@@ -3,29 +3,29 @@ import { NavController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
+import { CheckingCustomersPage } from '../checkingCustomers/checkingCustomers';
+import { NewCheckPage } from '../newCheck/newCheck';
+import { PersonalFilePage } from '../personalFile/personalFile';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+users=firebase.database().ref('users/-KrjqXsU6q1olWIeiXGA/name');
 
   constructor(public navCtrl: NavController) {
 
   }
-  trySave(){
-    console.log("enter to func");
-    //var defaultDatabase = firebase.database();
-//     var messageListRef = firebase.database().ref('users');
-// var newMessageRef = messageListRef.push();
-// newMessageRef.set({
-//   'user_id': 'ada',
-//   'text': 'The Analytical Engine weaves algebraical patterns just as the Jacquard loom weaves flowers and leaves.'
-// });
+  navigateNewCheck() {
+    this.navCtrl.push(NewCheckPage);
+  }  
 
-    firebase.database().ref().push().set({
-      "name":"a",
-      "gmail address":"a@a.com"
-    })
-  }
+  navigateCheckCustomers(){
+    this.navCtrl.push(CheckingCustomersPage);
+  } 
 
+  navigatePersonalFile(){
+    this.navCtrl.push(PersonalFilePage);
+  } 
 }
