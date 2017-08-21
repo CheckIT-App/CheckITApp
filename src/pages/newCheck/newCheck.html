@@ -7,5 +7,54 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="addCheckForm">
+  <ion-list>
 
+  <ion-item>
+    <ion-label floating>First Name</ion-label>
+    <ion-input type="text" formControlName="firstName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Last Name</ion-label>
+    <ion-input type="text" formControlName="lastName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>ID</ion-label>
+    <ion-input type="text" formControlName="ID"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Check number</ion-label>
+    <ion-input type="text" formControlName="checkNumber"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Sum</ion-label>
+    <ion-input type="text" formControlName="sum"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Bank</ion-label>
+    <ion-input type="text" formControlName="bank"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Branch</ion-label>
+    <ion-input type="text" formControlName="branch"></ion-input>
+  </ion-item>
+
+  <!--<ion-item>
+    <ion-label floating>Due Date</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY" type="text"></ion-datetime>
+  </ion-item>-->
+
+  <ion-item>
+    <ion-label>Due Date</ion-label>
+    <ion-datetime min="{{toDay | date: 'yyyy'}}" max="{{future | date: 'yyyy'}}" displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY" formControlName="dueDate"></ion-datetime>
+  </ion-item>
+
+</ion-list>
+</form>
 </ion-content>

@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { NewCheckPage } from '../pages/newCheck/newCheck';
 import { PersonalFilePage } from '../pages/personalFile/personalFile';
 import { RegisterPage } from '../pages/register/register';
+import { FirebaseProvider } from '../providers/firebase/firebase';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegisterPage } from '../pages/register/register';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseProvider
   ]
 })
 export class AppModule {}
