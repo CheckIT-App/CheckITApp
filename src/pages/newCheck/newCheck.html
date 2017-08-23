@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="addCheckForm">
+  <form [formGroup]="addCheckForm" (submit)="addCheck()" novalidate>
   <ion-list>
 
   <ion-item>
@@ -22,17 +22,23 @@
 
   <ion-item>
     <ion-label floating>ID</ion-label>
-    <ion-input type="text" formControlName="ID"></ion-input>
+    <ion-input type="number" formControlName="ID"></ion-input>
   </ion-item>
+
+  <!--<ion-item *ngIf="!this.addCheckForm.controls.ID.valid">
+    <p>
+      Please enter a valid ID number
+    </p>
+  </ion-item>-->
 
   <ion-item>
     <ion-label floating>Check number</ion-label>
-    <ion-input type="text" formControlName="checkNumber"></ion-input>
+    <ion-input type="number" formControlName="checkNumber"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Sum</ion-label>
-    <ion-input type="text" formControlName="sum"></ion-input>
+    <ion-input type="number" formControlName="sum"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -51,10 +57,14 @@
   </ion-item>-->
 
   <ion-item>
-    <ion-label>Due Date</ion-label>
-    <ion-datetime min="{{toDay | date: 'yyyy'}}" max="{{future | date: 'yyyy'}}" displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY" formControlName="dueDate"></ion-datetime>
+    <ion-label floating>Due Date</ion-label>
+    <ion-input style="display:none" [(ngModel)]="selectedDate" formControlName="dueDate"></ion-input>
+    <ion-datetime min="{{toDay | date: 'yyyy'}}" max="{{future | date: 'yyyy'}}" displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY" formControlName="dueDate" [(ngModel)]="selectedDate"></ion-datetime>
   </ion-item>
 
 </ion-list>
+<button ion-button block type="submit">
+  Add
+</button>
 </form>
 </ion-content>

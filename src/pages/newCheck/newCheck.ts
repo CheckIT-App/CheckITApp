@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { IsID } from '../../customValidators/ID';
 import { IsNumberValidator } from '../../customValidators/number';
+import { IsRelevantDateValidator } from '../../customValidators/date';
+
 
 @Component({
   selector: 'page-newCheck',
@@ -11,25 +15,25 @@ import { IsNumberValidator } from '../../customValidators/number';
 })
 export class NewCheckPage {
   public addCheckForm:FormGroup;
-  toDay:number;
-  future:number;
+  toDay=Date.now();
+  future=Date.now()+100000000000;
+  selectedDate:number;
+  show=true;
 
   constructor(public navCtrl: NavController,public formBuilder:FormBuilder) {
-      // this.addCheckForm=formBuilder.group({[firstName: ['',Validators.compose([Validators.required, Validators.maxLength(15)])],
-      //                                       lastName: ['',Validators.compose([Validators.required, Validators.maxLength(20)])]})
-      this.toDay=Date.now();
-      this.future=this.toDay+100000000000;//to ask about the range of the due date!!!!!!!!!!!
          this.addCheckForm = formBuilder.group({
                 firstName: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
                 lastName: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
-                ID: ['', Validators.compose([Validators.required, IsNumberValidator.isValid])],
-                checkNumber: ['', Validators.compose([Validators.required, IsNumberValidator.isValid])],
+                ID: ['', Validators.compose([Validators.required, IsNumberValidator.isValid,IsID.isValid])],
+                checkNumber: ['', Validators.compose([Validators.required, IsNumberValidator.isValid])],//to add validation?
                 sum: ['', Validators.compose([Validators.required, IsNumberValidator.isValid])],
-                bank: ['', Validators.compose([Validators.required])],
-                branch: ['', Validators.compose([Validators.required])],
-                dueDate: ['', Validators.compose([Validators.required])]
-          });
-          
+                bank: ['', Validators.compose([Validators.required])],//to add validation?
+                branch: ['', Validators.compose([Validators.required])],//to add validation?
+                dueDate: ['', Validators.compose([Validators.required,IsRelevantDateValidator.isValid])]
+          });        
+  }
+  addCheck(){
+  
   }
 
 }
