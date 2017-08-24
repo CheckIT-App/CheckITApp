@@ -21,7 +21,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     LoginPage,
     NewCheckPage,
     PersonalFilePage,
-    RegisterPage
+    RegisterPage,
   ],
   imports: [
     BrowserModule,

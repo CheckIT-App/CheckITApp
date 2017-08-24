@@ -25,4 +25,11 @@ export class IsID{
          return {"notID": true};       
     }
 
+    static checkID(ID:number){
+        if((IsID.sumOfOddDigits(Math.floor(ID/10))+IsID.sumOfEvenDigits(ID as number))%10==0){
+            return null;
+        }
+         return {"notID": true};
+    }
+
 }
