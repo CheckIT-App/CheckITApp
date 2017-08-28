@@ -1,6 +1,7 @@
+import { AlertController, NavController  } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
+import { Camera } from '@ionic-native/camera';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,12 +16,14 @@ import { IsRelevantDateValidator } from '../../customValidators/date';
 })
 export class NewCheckPage {
   public addCheckForm:FormGroup;
+  dealID: number;
   toDay=Date.now();
   future=Date.now()+100000000000;
   selectedDate:number;
   show=true;
 
-  constructor(public navCtrl: NavController,public formBuilder:FormBuilder, public firebaseData:FirebaseProvider) {
+  constructor(public navCtrl: NavController,public formBuilder:FormBuilder, public firebaseData:FirebaseProvider,
+   public cameraPlugin: Camera) {
          this.addCheckForm = formBuilder.group({
                 firstName: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
                 lastName: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
@@ -36,14 +39,16 @@ export class NewCheckPage {
     if (!this.addCheckForm.valid){
       console.log("Nice try!");
     } else {
-      this.firebaseData.saveCheck(this.addCheckForm.value.firstName, 
-      this.addCheckForm.value.lastName, 
+      this.firebaseData.saveCheck(this.dealID, 
+        this.addCheckForm.value.firstName, 
+        this.addCheckForm.value.lastName, 
         parseInt(this.addCheckForm.value.ID), 
         parseInt(this.addCheckForm.value.checkNumber),
         parseInt(this.addCheckForm.value.sum), 
         this.addCheckForm.value.bank, 
         parseInt(this.addCheckForm.value.branch),
-        parseInt(this.addCheckForm.value.dueDate)).then( () => {
+        this.addCheckForm.value.dueDate).then( (data) => {
+          console.log(data);
           this.addCheckForm.reset();
         });
     }  

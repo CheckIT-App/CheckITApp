@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { Camera } from '@ionic-native/camera';
+
 import { MyApp } from './app.component';
 import { CheckingCustomersPage } from '../pages/checkingCustomers/checkingCustomers';
 import { HomePage } from '../pages/home/home';
@@ -38,6 +40,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     RegisterPage
   ],
   providers: [
+    Camera,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
