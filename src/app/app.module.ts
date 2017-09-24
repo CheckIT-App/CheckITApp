@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NewCheckPage } from '../pages/newCheck/newCheck';
 import { PersonalFilePage } from '../pages/personalFile/personalFile';
+import { DetailsModalPage } from '../pages/personalFile/detailsModal';
 import { RegisterPage } from '../pages/register/register';
 import { FirebaseProvider } from '../providers/firebase/firebase';
 
@@ -24,6 +25,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     NewCheckPage,
     PersonalFilePage,
     RegisterPage,
+    DetailsModalPage,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     LoginPage,
     NewCheckPage,
     PersonalFilePage,
-    RegisterPage
+    RegisterPage,
+    DetailsModalPage
   ],
   providers: [
     Camera,

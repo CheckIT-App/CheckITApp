@@ -12,4 +12,5 @@ export class Check {
     updateStatus: string;
     checkKey:string;
     sum:number;
+    
 }
