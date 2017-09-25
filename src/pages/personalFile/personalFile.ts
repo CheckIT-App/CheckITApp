@@ -37,7 +37,6 @@ export class PersonalFilePage implements OnInit {
     this.getDeals();
 
   }
-
   getDeals() {//import Deals from service
 
     this.deals = this.checkService.getDeals();
