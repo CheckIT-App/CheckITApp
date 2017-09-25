@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { NavController,ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import firebase from 'firebase';
@@ -17,18 +17,18 @@ import { DetailsModalPage } from './detailsModal';
   templateUrl: 'personalFile.html',
   providers: [CheckService]
 })
-export class PersonalFilePage implements OnInit{
+export class PersonalFilePage implements OnInit {
 
   selectedDeal: Deal;
   selectCheck: Check;
-  title = "My Personal File";
+  title = "התיק האישי שלי";
   orderProp = "";
-  
- 
-   deals: Deal[];
+
+
+  deals: Deal[];
   checks: Check[];
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,public modalCtrl:ModalController, private checkService: CheckService) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, private checkService: CheckService) {
 
   }
 
@@ -37,7 +37,7 @@ export class PersonalFilePage implements OnInit{
     this.getDeals();
 
   }
- 
+
   getDeals() {//import Deals from service
 
     this.deals = this.checkService.getDeals();
@@ -48,28 +48,28 @@ export class PersonalFilePage implements OnInit{
   presentModal() {
 
     //console.log(this.selectCheck);
-    let modal = this.modalCtrl.create(DetailsModalPage,{selectedCheck:this.selectCheck});
+    let modal = this.modalCtrl.create(DetailsModalPage, { selectedCheck: this.selectCheck });
     modal.present();
 
   }
 
-  
+
   trySave() {
 
     this.checkService.save(this.checks);
-    this.selectedDeal=null;
+    this.selectedDeal = null;
 
   }
 
-  cancel(){
-    this.checks.forEach(c=>{
-      if(c.updateStatus!='static'){
-        c.checkStatus=c.updateStatus;
-        c.updateStatus='static';
-        c.dueDate='';
+  cancel() {
+    this.checks.forEach(c => {
+      if (c.updateStatus != 'static') {
+        c.checkStatus = c.updateStatus;
+        c.updateStatus = 'static';
+        c.dueDate = '';
       }
     });
-    this.selectedDeal=null;    
+    this.selectedDeal = null;
   }
 
   thisDeal(Deal) {//change selected Deal
@@ -111,10 +111,13 @@ export class PersonalFilePage implements OnInit{
     if (val && val.trim() != '') {
 
       this.deals = this.deals.filter((item) => {
-        return ((item.firstName+item.timeStamp).toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+        return ((item.firstName + item.timeStamp).toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+
 
     }
+    if (this.orderProp != "")
+      this.sortBy();
 
   }
   sortBy() {
@@ -143,5 +146,5 @@ export class PersonalFilePage implements OnInit{
 
   }
 
- 
+
 }

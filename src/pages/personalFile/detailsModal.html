@@ -1,38 +1,33 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-title>
-            <button ion-button  (click)="dismiss()">close</button> More Details
+            <button ion-button  (click)="dismiss()">אישור</button> פרטים נוספים
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding dir="rtl">
     <ion-list>
         
         <ion-item>
-            <ion-label >firstName : </ion-label>
+            <ion-label >שם : </ion-label>
             <ion-label > {{selectedCheck.firstName}}</ion-label>
             
-        </ion-item>
+        </ion-item> 
          <ion-item>
-            <ion-label >first name : </ion-label>
-            <ion-label >{{selectedCheck.firstName}}</ion-label>
-            
-        </ion-item>
-         <ion-item>
-            <ion-label >deal id :</ion-label>
+            <ion-label >מספר עסקה :</ion-label>
             <ion-label >{{selectedCheck.dealId}}</ion-label>
         </ion-item>
          <ion-item>
-            <ion-label >check number :</ion-label>
+            <ion-label >מספר צ'ק :</ion-label>
             <ion-label >{{selectedCheck.id}}</ion-label>
         </ion-item>
           <ion-item>
-            <ion-label >bank :</ion-label>
+            <ion-label >בנק :</ion-label>
             <ion-label >{{selectedCheck.bank}}</ion-label>
         </ion-item>
          <ion-item>
-            <ion-label >branch :</ion-label>
+            <ion-label >סניף :</ion-label>
             <ion-label >{{selectedCheck.branch}}</ion-label>
         </ion-item>
          <ion-item>
@@ -41,11 +36,11 @@
         </ion-item>
         <ion-item>
             <ion-label item-start>{{selectedCheck.checkStatus}}</ion-label>
-            <button ion-button  item-end (click)="changeStatusAlert()">change status</button>
+            <button ion-button  item-end (click)="changeStatusAlert()">שנה סטטוס</button>
 
         </ion-item>
         <ion-item>
-            <ion-label>Due Date</ion-label>
+            <ion-label>תאריך פרעון</ion-label>
             <ion-datetime #dateTime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="selectedCheck.dueDate"></ion-datetime>
 
         </ion-item>

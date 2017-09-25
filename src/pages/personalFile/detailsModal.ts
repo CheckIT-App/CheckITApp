@@ -29,30 +29,30 @@ export class DetailsModalPage {
 
   changeStatusAlert() { //  alert for changing status of a check
     let alert = this.alertCtrl.create();
-    alert.setTitle('Change Status');
+    alert.setTitle('שנה סטטוס');
 
     alert.addInput({
       type: 'radio',
-      label: 'Paid',
-      value: 'Paid',
+      label: 'שולם',
+      value: 'שולם',
       checked: true
     });
     alert.addInput({
       type: 'radio',
-      label: 'Check Returned',
-      value: 'Check Returned',
+      label: "צ'ק חזר",
+      value: "צ'ק חזר",
       checked: false
     });
     alert.addInput({
       type: 'radio',
-      label: 'Not Paid Yet',
-      value: 'not paid yet',
+      label: 'לא שולם עדיין',
+      value: 'לא שולם עדיין',
       checked: false
     });
 
-    alert.addButton('Cancel');
+    alert.addButton('בטל');
     alert.addButton({
-      text: 'OK',
+      text: 'אישור',
       handler: data => {
         this.testStatusRadioOpen = false;
         this.testStatusRadioResult = data;
@@ -66,11 +66,12 @@ export class DetailsModalPage {
 
     if (this.selectedCheck && result != this.selectedCheck.checkStatus&&this.selectedCheck.updateStatus=='static') {
       this.selectedCheck.updateStatus = this.selectedCheck.checkStatus;
-      this.selectedCheck.checkStatus = result;
       console.log(this.selectedCheck.updateStatus + result);
       this.sTime.open();
 
     }
+    this.selectedCheck.checkStatus = result;
+    
 
   }
 
