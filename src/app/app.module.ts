@@ -11,10 +11,12 @@ import { CheckingCustomersPage } from '../pages/checkingCustomers/checkingCustom
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NewCheckPage } from '../pages/newCheck/newCheck';
-import { PersonalFilePage } from '../pages/personalFile/personalFile';
-import { DetailsModalPage } from '../pages/personalFile/detailsModal';
+import { PersonalFilePage } from '../pages/personal-file/personal-file';
+import { DetailsModalPage } from '../pages/personal-file/details-modal/details-modal';
 import { RegisterPage } from '../pages/register/register';
+
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import { FilterStatusPipe } from '../pages/share/filters';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     PersonalFilePage,
     RegisterPage,
     DetailsModalPage,
+    FilterStatusPipe
   ],
   imports: [
     BrowserModule,

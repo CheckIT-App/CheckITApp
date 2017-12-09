@@ -5,7 +5,7 @@ import firebase from 'firebase';
 
 import { CheckingCustomersPage } from '../checkingCustomers/checkingCustomers';
 import { NewCheckPage } from '../newCheck/newCheck';
-import { PersonalFilePage } from '../personalFile/personalFile';
+import { PersonalFilePage } from '../personal-file/personal-file';
 
 @Component({
   selector: 'page-home',
