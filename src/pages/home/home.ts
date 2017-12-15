@@ -3,8 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
-import { CheckingCustomersPage } from '../checkingCustomers/checkingCustomers';
-import { NewCheckPage } from '../newCheck/newCheck';
+import { CheckingCustomersPage } from '../checking-customers/checking-customers';
+import { NewDealPage } from '../new-deal/new-deal.component';
 import { PersonalFilePage } from '../personalFile/personalFile';
 
 @Component({
@@ -17,8 +17,8 @@ users=firebase.database().ref('users/-KrjqXsU6q1olWIeiXGA/name');
   constructor(public navCtrl: NavController) {
 
   }
-  navigateNewCheck() {
-    this.navCtrl.push(NewCheckPage);
+  navigateNewDeal() {
+    this.navCtrl.push(NewDealPage);
   }  
 
   navigateCheckCustomers(){

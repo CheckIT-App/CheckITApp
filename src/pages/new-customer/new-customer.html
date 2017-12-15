@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar color="primary">
+                <button ion-button clear color="light" (click)="dismiss()">Close</button>
+        <ion-title>
+            Add Customer - {{customerID}}
+        </ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="addCustomerForm" (submit)="addCustomer()" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>{{optionalIdentityType}} (optional)</ion-label>
+                <ion-input type="text" formControlName="identity" (change)="isExists()"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>First Name</ion-label>
+                <ion-input type="text" formControlName="firstName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input type="text" formControlName="lastName"></ion-input>
+            </ion-item>
+
+        </ion-list>
+        <button ion-button block type="submit">Add</button>
+    </form>
+</ion-content>

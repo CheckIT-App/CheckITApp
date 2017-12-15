@@ -6,22 +6,27 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { Camera } from '@ionic-native/camera';
 
+//import { eStatus } from '../status-enumaration';
 import { MyApp } from './app.component';
-import { CheckingCustomersPage } from '../pages/checkingCustomers/checkingCustomers';
+import { CheckingCustomersPage } from '../pages/checking-customers/checking-customers';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { NewCheckPage } from '../pages/newCheck/newCheck';
+import { NewDealPage } from '../pages/new-deal/new-deal.component';
+import { NewCustomerModal } from '../pages/new-customer/new-customer';
 import { PersonalFilePage } from '../pages/personalFile/personalFile';
 import { RegisterPage } from '../pages/register/register';
+import { NewDealService } from '../services/new-deal.service';
 import { FirebaseProvider } from '../providers/firebase/firebase';
 
 @NgModule({
   declarations: [
+    //eStatus,
     MyApp,
     CheckingCustomersPage,
     HomePage,
     LoginPage,
-    NewCheckPage,
+    NewDealPage,
+    NewCustomerModal,
     PersonalFilePage,
     RegisterPage,
   ],
@@ -35,12 +40,14 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     CheckingCustomersPage,
     HomePage,
     LoginPage,
-    NewCheckPage,
+    NewDealPage,
+    NewCustomerModal,
     PersonalFilePage,
     RegisterPage
   ],
   providers: [
     Camera,
+    NewDealService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

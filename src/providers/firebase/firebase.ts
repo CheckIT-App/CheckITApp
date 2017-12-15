@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import { FormControl } from '@angular/forms';
 
-import { IsID } from '../../customValidators/ID';
+
 /*
   Generated class for the FirebaseProvider provider.
 
@@ -19,22 +19,7 @@ export class FirebaseProvider {
   // constructor(public http: Http) {
   //   console.log('Hello FirebaseProvider Provider');
   // }
-  constructor(){
+  constructor() {
 
   }
-
-  getDealID(){
-    this.dealID=456;
-    return this.dealID;
-  }
-
-  saveCheck(dealID: number, firstName:string, lastName:string, ID:number, checkNumber:number, sum:number, bank:string, branch:number, dueDate):Promise<number> {
-    if(Date.parse(dueDate)>Date.now() && IsID.checkID(ID)!={"notID": true}){
-      firebase.database().ref('checks')
-      .push({ firstName, lastName, ID, checkNumber, sum, bank, branch, dueDate });
-      return Promise.resolve(this.getDealID());
-    }
-    console.log("ERROR");
-  }
-
 }

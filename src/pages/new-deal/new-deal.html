@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      New Check
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="addCheckForm" (submit)="addDeal()" novalidate>
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>ID</ion-label>
+        <ion-input type="number" formControlName="ID" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
+      </ion-item>
+
+      <!--<ion-item *ngIf="!this.addCheckForm.controls.ID.valid">
+    <p>
+      Please enter a valid ID number
+    </p>
+  </ion-item>-->
+
+      <ion-item>
+        <ion-label floating>passport</ion-label>
+        <ion-input type="number" formControlName="passport" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Check number</ion-label>
+        <ion-input type="number" formControlName="checkNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Sum</ion-label>
+        <ion-input type="number" formControlName="sum"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Bank</ion-label>
+        <ion-input type="text" formControlName="bank"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Branch</ion-label>
+        <ion-input type="number" formControlName="branch"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Due Date</ion-label>
+        <ion-input style="display:none" [(ngModel)]="selectedDate" formControlName="dueDate"></ion-input>
+        <ion-datetime min="{{minDay | date: 'yyyy'}}" max="{{maxDay | date: 'yyyy'}}" displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY"
+          formControlName="dueDate" [(ngModel)]="selectedDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ios-camera" color="primary" (click)="takePic()"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+    <button ion-button block type="submit">Add</button>
+  </form>
+</ion-content>

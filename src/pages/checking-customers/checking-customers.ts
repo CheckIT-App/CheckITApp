@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-checkingCustomers',
-  templateUrl: 'checkingCustomers.html'
+  templateUrl: 'checking-customers.html'
 })
 export class CheckingCustomersPage {
 
