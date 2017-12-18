@@ -9,14 +9,17 @@ import { Camera } from '@ionic-native/camera';
 //import { eStatus } from '../status-enumaration';
 import { MyApp } from './app.component';
 import { CheckingCustomersPage } from '../pages/checking-customers/checking-customers';
+import { DetailsModalPage } from '../pages/personal-file/details-modal/details-modal';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { NewDealPage } from '../pages/new-deal/new-deal.component';
 import { NewCustomerModal } from '../pages/new-customer/new-customer';
-import { PersonalFilePage } from '../pages/personalFile/personalFile';
-import { RegisterPage } from '../pages/register/register';
 import { NewDealService } from '../services/new-deal.service';
+import { PersonalFilePage } from '../pages/personal-file/personal-file';
+import { RegisterPage } from '../pages/register/register';
+
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import { FilterStatusPipe } from '../pages/share/filters';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     NewCustomerModal,
     PersonalFilePage,
     RegisterPage,
+    DetailsModalPage,
+    FilterStatusPipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
     NewDealPage,
     NewCustomerModal,
     PersonalFilePage,
-    RegisterPage
+    RegisterPage,
+    DetailsModalPage
   ],
   providers: [
     Camera,

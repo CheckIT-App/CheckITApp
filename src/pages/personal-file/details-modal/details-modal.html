@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <button ion-button (click)="ok()">אישור</button>
+            <button ion-button (click)="cancel()">בטל</button> פרטים נוספים
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding dir="rtl">
+    <ion-list>
+        <ion-item>
+            <ion-label item-start>מספר צ'ק :</ion-label>
+            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.id"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label item-start>בנק :</ion-label>
+            <ion-input dir="ltr" [(ngModel)]="selectedCheck.bank"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label item-start>סניף :</ion-label>
+            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.branch"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label item-start>{{sum}} :</ion-label>
+            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.sum"></ion-input>
+        </ion-item>
+        <ion-item >
+            <ion-label>תאריך פרעון</ion-label>
+            <ion-datetime  displayFormat="DD/MM/YYYY" min="2016" max="2040" pickerFormat="DD/MM/YYYY" [(ngModel)]="selectedCheck.dueDate"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="!checkReturned">
+            <ion-label>נפדה בתאריך</ion-label>
+            <ion-datetime  displayFormat="DD/MM/YYYY" min="2016" max="2018" pickerFormat="DD/MM/YYYY" [(ngModel)]="selectedCheck.expiredOn"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>צ'ק חזר</ion-label>
+            <ion-checkbox color="secondColor" checked="{{checkReturned}}" [(ngModel)]="checkReturned"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</ion-content>
