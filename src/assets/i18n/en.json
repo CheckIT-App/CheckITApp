@@ -1,0 +1,71 @@
+{
+    "LOGIN": {
+        "USER_NAME": "User Name",
+        "PASSPORT": "Passport",
+        "BUTTON_LOGIN": "Login",
+        "BUTTON_REGISTER": "New User?"
+    },
+    "START": {
+        "HEADER": "Start",
+        "SELECT_HEADER_TYPE": "Select type of your exchange",
+        "CORPORATION": "Corporation",
+        "PRIVATE": "Private",
+        "SELECT_HEADER_LANGUAGE": "Select language",
+        "ENGLISH": "English",
+        "HEBREW": "Hebrew",
+        "BUTTON_TEXT": "Next"
+    },
+    "HOME": {
+        "HEADER": "Home",
+        "BUTTON_NEW_DEAL": "New Deal",
+        "BUTTON_CHECKING_CUSTOMERS": "Checking Customers",
+        "BUTTON_PERSONAL_FILE": "Personal File"
+    },
+    "AUTHENTICATION": {
+        "HEADER": "Authentication",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "IDENTITY": "Identity",
+        "CORPORATION_NUMBER": "Number of corporation",
+        "BUTTON_TEXT": "Next"
+    },
+    "EXIT": {
+        "BUTTON_TEXT": "Exit"
+    },
+    "FORGOT_PASSWORD":{
+        "HEADER":"Forgot password",
+        "INPUT_TEXT":"Enter your email address",
+        "BUTTON_TEXT":"OK"
+    },
+    "ADD_CUSTOMER":{
+        "HEADER":"New customer",
+        "IDENTITY":"Identity (optional)",
+        "PASSPORT":"Passport (optional)",
+        "FIRST_NAME":"First name",
+        "LAST_NAME":"Last name",
+        "BUTTON_TEXT":"ADD"
+    },
+    "NEW_DEAL":{
+        "HEADER":"New Deal",
+        "ID":"identity",
+        "PASSPORT":"passport",
+        "CHECK_NUMBER":"check number",
+        "SUM":"sum",
+        "BANK":"bank",
+        "BRANCH":"branch",
+        "DUE_DATE":"due date",
+        "BUTTON_TEXT":"ADD"
+    },
+    "REGISTER":{
+        "HEADER":"Register",
+        "AUTHENTICATION_PASSWORD":"authenicate your password",
+        "PASSWORD":"password",
+        "USERNAME":"username",
+        "EMAIL":"email",
+        "MOBILE":"mobile",
+        "TELEPHONE":"telephone (not required)",
+        "ADDRESS":"address",
+        "TEXT_REGISTER":"Register",
+        "TEXT_EXISTS":"Exists user"
+    }
+}

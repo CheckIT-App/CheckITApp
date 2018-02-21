@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      {{ 'START.HEADER' | translate }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <header>{{ 'START.SELECT_HEADER_TYPE' | translate }}</header>
+  <ion-list radio-group [(ngModel)]="type">
+    <ion-item>
+      <ion-label>{{ 'START.PRIVATE' | translate }}</ion-label>
+      <ion-radio checked="true" value="private"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'START.CORPORATION' | translate }}</ion-label>
+      <ion-radio value="corporation"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <header>{{ 'START.SELECT_HEADER_LANGUAGE' | translate }}</header>
+  <ion-list radio-group [(ngModel)]="lang" (ionChange)="changeLang()">
+    <ion-item>
+      <ion-label>עברית</ion-label>
+      <ion-radio checked="true" value="he"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>English</ion-label>
+      <ion-radio value="en"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <button ion-button color="mainColor" block (click)="next()">{{ 'START.BUTTON_TEXT' | translate }}</button>
+
+</ion-content>

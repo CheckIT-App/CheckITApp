@@ -1,25 +1,31 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Register
+      {{"REGISTER.HEADER"|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- 
- <ion-list>
+  <form [formGroup]="registerForm" (submit)="register()">
+    <ion-list>
 
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>{{"REGISTER.USERNAME"|translate}}</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+      <!-- <div *ngIf="username.hasError('required') && username.touched" class="error-box">* Password is required</div> -->
+      <ion-item>
+        <ion-label floating>{{"REGISTER.PASSWORD"|translate}}</ion-label>
+        <ion-input formControlName="password1" type="password" (change)="authPassword()"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
+      <ion-item *ngIf="passIsFilled">
+        <ion-label floating>{{"REGISTER.AUTHENTICATION_PASSWORD"|translate}}</ion-label>
+        <ion-input formControlName="password2" type="password"></ion-input>
+      </ion-item>
 
+      <!-- 
    <ion-item>
     <ion-label floating>First Name</ion-label>
     <ion-input type="text"></ion-input>
@@ -28,41 +34,46 @@
   <ion-item>
     <ion-label floating>Last Name</ion-label>
     <ion-input type="text"></ion-input>
-  </ion-item>
+  </ion-item> -->
 
-  <ion-item>
+      <!-- <ion-item>
     <ion-label >Business type</ion-label>
     <ion-select interface="popover" class="select select-ios ng-untouched ng-pristin ng-valid" >
       <ion-option value="p">Private</ion-option>
       <ion-option value="c">Corporation</ion-option>
     </ion-select>
-  </ion-item>
+  </ion-item> -->
 
+      <ion-item>
+        <ion-label floating>{{"REGISTER.EMAIL"|translate}}</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
 
- <ion-item>
-    <ion-label floating>Mobile</ion-label>
-    <ion-input type="tel"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>{{"REGISTER.MOBILE"|translate}}</ion-label>
+        <ion-input formControlName="number" type="tel"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label floating>Telephone</ion-label>
-    <ion-input type="tel"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>{{"REGISTER.TELEPHONE"|translate}}</ion-label>
+        <ion-input formControlName="telephone" type="tel"></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="email"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>{{"REGISTER.ADDRESS"|translate}}</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
 
-  <ion-item>
+      <!-- <ion-item>
     <ion-label floating>Address</ion-label>
     <ion-input type="text"></ion-input>
-  </ion-item>
+  </ion-item> -->
 
-</ion-list>
-<div>
-    <button ion-button color="secondColor" block>Login</button>
-    <button ion-button color="mainColor" block>New User</button>
-</div>
+    </ion-list>
+    <div>
+      <button ion-button color="secondColor" type="submit" block>{{"REGISTER.TEXT_REGISTER"|translate}}</button>
+      <button ion-button color="mainColor" block>{{"REGISTER.TEXT_EXISTS"|translate}}</button>
+    </div>
+  </form>
 
 </ion-content>

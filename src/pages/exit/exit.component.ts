@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { LoginPage } from '../login/login.component';
+
 @Component({
-  selector: 'page-checkingCustomers',
-  templateUrl: 'checking-customers.html'
+  selector: 'exit',
+  templateUrl: 'exit.html'
 })
-export class CheckingCustomersPage {
+export class Exit {
 
   constructor(public navCtrl: NavController) {
     if(localStorage.getItem('language')=='en')
       document.dir='ltr';
+  }
+
+  Exit(){
+    localStorage.removeItem('currentUser');
+    this.navCtrl.push(LoginPage);
   }
 
 }

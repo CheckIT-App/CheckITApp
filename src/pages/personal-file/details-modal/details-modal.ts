@@ -20,7 +20,8 @@ export class DetailsModalPage implements OnInit {
 //constructor
 
   constructor(params: NavParams, public viewCtrl: ViewController) {
-
+    if(localStorage.getItem('language')=='en')
+      document.dir='ltr';
     this.selectedCheck = params.get('selectedCheck');
 
   }

@@ -22,23 +22,27 @@ export class NewDealService {
     saveDeal(customer_uid, customer_id: number, passport: number, checkNumber: number, sum: number, bank: string, branch: number, dueDate): Promise<string> {
         if (customer_uid != null && IsRelevantDateValidator.checkDate(dueDate) != { "notValidityDate": true } && (IsID.checkIDAsNumber(customer_id) != { "notValidID": true } || IsID.checkPassportAsNumber(passport) != { "notValidPassport": true })) {
             var key = firebase.database().ref('deals').push({ customer_uid, created: Date.now(), sum: 0, status: eStatus.notPaid }).key;
+            console.log(localStorage.getItem('currentUser'));
             firebase.database().ref("public_deals/" + key).set({ customer_uid, created: Date.now(), checks_sum: 0, status: eStatus.notPaid });
-            firebase.database().ref('user_deals/' + key).set({ customer_uid, created: Date.now(), status: eStatus.notPaid });//TO CHANGE!!!! after doing register...
+            firebase.database().ref("customer_deals/" + customer_uid + "/" + key).set({ created: Date.now(), status: eStatus.notPaid });//TODO 1)add user_uid. 2)ask chavi if she want me to change the key to identity/passport of customer instead of his uid
+            firebase.database().ref('user_deals/' + localStorage.getItem('currentUser') + '/' + key).set({ customer_uid, created: Date.now(), status: eStatus.notPaid });//TO CHANGE!!!! after doing register...
             return Promise.resolve(key);
         }
         return Promise.resolve("Error");
     }
 
-    saveCheck(deal_key: string, id: number, sum: number, bank: string, branch: number, due_date): Promise<boolean> {
+    saveCheck(customer_uid, deal_key: string, id: number, sum: number, bank: string, branch: number, due_date): Promise<boolean> {
         if (IsRelevantDateValidator.checkDate(due_date) != { "notValidityDate": true }) {
             firebase.database().ref('deals').child(deal_key).child('sum').once('value', function (snap) {
                 firebase.database().ref('deals').child(deal_key).child('sum').set(snap.val() + sum);
                 firebase.database().ref('public_deals').child(deal_key).child('checks_sum').set(snap.val() + sum);
             });
+            let customer_name = firebase.database().ref('customer_profiles/' + customer_uid).child('firstName') + " " + firebase.database().ref('customer_profiles/' + customer_uid).child('lastName');
             this.checkID = firebase.database().ref('checks')
-                .push({ id, sum, bank, branch, due_date, deal_key, status: eStatus.notPaid, is_date_of: (Date.parse(due_date) <= Date.now()) }).key;
-            firebase.database().ref('deals').child(deal_key).child('checks').push({ checkID: this.checkID });
-            firebase.database().ref('user_deals').child(deal_key).child('checks').push({ checkID: this.checkID });
+                .push({ id, sum, bank, branch, due_date, deal_key,user_uid:localStorage.getItem('currentUser'),customer_uid,customer_name:customer_name, expired_on: "", status: eStatus.notPaid, is_date_of: (Date.parse(due_date) <= Date.now()) }).key;
+            firebase.database().ref('deals').child(deal_key).child('checks/' + this.checkID).set(this.checkID);
+            firebase.database().ref('user_deals').child(localStorage.getItem('currentUser')).child(deal_key).child('checks/' + this.checkID).set(this.checkID);
+            firebase.database().ref('customer_deals').child(customer_uid).child(deal_key).child('checks/' + this.checkID).set(this.checkID);
             return Promise.resolve(true);
         }
         return Promise.resolve(false);

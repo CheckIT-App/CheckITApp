@@ -1,17 +1,18 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      New Check
+     {{"NEW_DEAL.HEADER"|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="addCheckForm" (submit)="addDeal()" novalidate>
+  <exit></exit>
+  <form [formGroup]="addDealForm" (submit)="addDeal()" novalidate>
     <ion-list>
 
       <ion-item>
-        <ion-label floating>ID</ion-label>
+        <ion-label floating>{{"NEW_DEAL.ID"|translate}}</ion-label>
         <ion-input type="number" formControlName="ID" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
 
@@ -22,32 +23,32 @@
   </ion-item>-->
 
       <ion-item>
-        <ion-label floating>passport</ion-label>
+        <ion-label floating>{{"NEW_DEAL.PASSPORT"|translate}}</ion-label>
         <ion-input type="number" formControlName="passport" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Check number</ion-label>
+        <ion-label floating>{{"NEW_DEAL.CHECK_NUMBER"|translate}}</ion-label>
         <ion-input type="number" formControlName="checkNumber"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Sum</ion-label>
+        <ion-label floating>{{"NEW_DEAL.SUM"|translate}}</ion-label>
         <ion-input type="number" formControlName="sum"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Bank</ion-label>
+        <ion-label floating>{{"NEW_DEAL.BANK"|translate}}</ion-label>
         <ion-input type="text" formControlName="bank"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Branch</ion-label>
+        <ion-label floating>{{"NEW_DEAL.BRANCH"|translate}}</ion-label>
         <ion-input type="number" formControlName="branch"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Due Date</ion-label>
+        <ion-label floating>{{"NEW_DEAL.DUE_DATE"|translate}}</ion-label>
         <ion-input style="display:none" [(ngModel)]="selectedDate" formControlName="dueDate"></ion-input>
         <ion-datetime min="{{minDay | date: 'yyyy'}}" max="{{maxDay | date: 'yyyy'}}" displayFormat="DD/MM/YYYY" pickerFormat="DD/MMM/YYYY"
           formControlName="dueDate" [(ngModel)]="selectedDate"></ion-datetime>
@@ -57,6 +58,6 @@
       </ion-item>
 
     </ion-list>
-    <button ion-button block type="submit">Add</button>
+    <button ion-button block type="submit">{{"NEW_DEAL.BUTTON_TEXT"|translate}}</button>
   </form>
 </ion-content>

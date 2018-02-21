@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Login
+        {{ 'LOGIN.HEADER' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,19 +11,20 @@
  <ion-list>
 
   <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-label floating>{{ 'LOGIN.USER_NAME' | translate }}</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-label floating>{{ 'LOGIN.PASSPORT' | translate }}</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
 
 </ion-list>
 <div>
-    <button ion-button color="secondColor" block>Login</button>
-    <button ion-button color="mainColor" block>New User</button>
+    <button ion-button color="secondColor" block (click)="login()">{{ 'LOGIN.BUTTON_LOGIN' | translate }}</button>
+    <button ion-button color="mainColor" block (click)="navigateNewUser()">{{ 'LOGIN.BUTTON_REGISTER' | translate }}</button>
 </div>
+<button ion-button clear (click)="forgotPassword()">forgot password</button>
 
 </ion-content>

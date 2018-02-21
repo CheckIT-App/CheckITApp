@@ -1,0 +1,71 @@
+{
+    "LOGIN": {
+        "USER_NAME": "שם משתמש",
+        "PASSPORT":"דרכון",
+        "BUTTON_LOGIN":"כניסה",
+        "BUTTON_REGISTER":"?משתמש חדש"
+    },
+    "START":{
+        "HEADER":"התחל",
+        "SELECT_HEADER_TYPE":"בחר בסוג העסק שלך",
+        "CORPORATION":"תאגיד",
+        "PRIVATE":"פרטי",
+        "SELECT_HEADER_LANGUAGE":"בחר שפה",
+        "ENGLISH":"אנגלית",
+        "HEBREW":"עברית",
+        "BUTTON_TEXT":"המשך"
+    },
+    "HOME":{
+        "HEADER":"דף הבית",
+        "BUTTON_NEW_DEAL":"עסקה חדשה",
+        "BUTTON_CHECKING_CUSTOMERS":"בדיקת לקוחות",
+        "BUTTON_PERSONAL_FILE":"תיק אישי"
+    },
+    "AUTHENTICATION":{
+        "HEADER":"אימות",
+        "FIRST_NAME":"שם פרטי",
+        "LAST_NAME":"שם משפחה",
+        "IDENTITY":"מספר זהות",
+        "CORPORATION_NUMBER":"מספר עוסק",
+        "BUTTON_TEXT":"המשך"
+    },
+    "EXIT": {
+        "BUTTON_TEXT": "צא"
+    },
+    "FORGOT_PASSWORD":{
+        "HEADER":"שכחתי סיסמא",
+        "INPUT_TEXT":"כתובת מייל",
+        "BUTTON_TEXT":"אישור"
+    },
+    "ADD_CUSTOMER":{
+        "HEADER":"לקוח חדש",
+        "IDENTITY":"מספר זהות (לא חובה)",
+        "PASSPORT":"מספר דרכון (לא חובה)",
+        "FIRST_NAME":"שם פרטי",
+        "LAST_NAME":"שם משפחה",
+        "BUTTON_TEXT":"הוסף"
+    },
+    "NEW_DEAL":{
+        "HEADER":"עסקה חדשה",
+        "ID":"מספר זהות",
+        "PASSPORT":"מספר דרכון",
+        "CHECK_NUMBER":"מספר צ'ק",
+        "SUM":"סכום",
+        "BANK":"בנק",
+        "BRANCH":"סניף",
+        "DUE_DATE":"תאריך פירעון",
+        "BUTTON_TEXT":"הוסף"
+    },
+    "REGISTER":{
+        "HEADER":"רישום",
+        "AUTHENTICATION_PASSWORD":"אמת את הסיסמא שלך",
+        "PASSWORD":"סיסמא",
+        "USERNAME":"שם משתמש",
+        "EMAIL":"כתובת אימייל",
+        "MOBILE":"נייד",
+        "TELEPHONE":"מספר טלפון (לא חובה)",
+        "ADDRESS":"כתובת",
+        "TEXT_REGISTER":"רישום",
+        "TEXT_EXISTS":"לקוח קיים?"
+    }
+}

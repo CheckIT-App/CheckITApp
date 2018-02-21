@@ -29,7 +29,8 @@ export class PersonalFilePage implements OnInit {
 //constructor
 
   constructor( public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
-
+    if(localStorage.getItem('language')=='en')
+      document.dir='ltr';
   }
 
 //functions

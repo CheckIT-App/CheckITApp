@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 import firebase from 'firebase';
 
@@ -12,20 +13,22 @@ import { PersonalFilePage } from '../personal-file/personal-file';
   templateUrl: 'home.html'
 })
 export class HomePage {
-users=firebase.database().ref('users/-KrjqXsU6q1olWIeiXGA/name');
+  users = firebase.database().ref('users/-KrjqXsU6q1olWIeiXGA/name');
 
   constructor(public navCtrl: NavController) {
-
+    if(localStorage.getItem('language')=='en')
+      document.dir='ltr';
   }
+  
   navigateNewDeal() {
     this.navCtrl.push(NewDealPage);
-  }  
+  }
 
-  navigateCheckCustomers(){
+  navigateCheckCustomers() {
     this.navCtrl.push(CheckingCustomersPage);
-  } 
+  }
 
-  navigatePersonalFile(){
+  navigatePersonalFile() {
     this.navCtrl.push(PersonalFilePage);
-  } 
+  }
 }

@@ -23,7 +23,9 @@ export class NewCustomerModal {
     public addCustomerForm: FormGroup;
     customerID: string;
     identityType: string;
+    message_exists: string = 'הלקוח כבר קיים במערכת';
     optionalIdentityType: string;
+
     constructor(public navCtrl: NavController, public viewCtrl: ViewController, public toastCtrl: ToastController, public navParams: NavParams, public formBuilder: FormBuilder, public newDealService: NewDealService,
         public cameraPlugin: Camera) {
         this.addCustomerForm = formBuilder.group({
@@ -33,8 +35,13 @@ export class NewCustomerModal {
         });
         this.customerID = navParams.get('ID');
         this.identityType = navParams.get('type');
-        this.optionalIdentityType = this.identityType == "ID" ? "passport" : "ID";
+        this.optionalIdentityType = this.identityType == "ID" ? "PASSPORT" : "IDENTITY";
         this.addCustomerForm.controls.identity.setValidators(this.identityType == "ID" ? IsID.checkPassport : IsID.checkID);
+        if (localStorage.getItem('language') == 'en') {
+            document.dir = 'ltr';
+            this.message_exists = 'This customer has been added already';
+        }
+
     }
 
     isExists(): void {//הפונקציה הזו בודקת האם הסוג השני של האיידי כבר קיים במערכת. אם כן הלקוח כבכר קיים ואין צורך להוסיף אותו אלא רק א מספר הזהות הנוסף
@@ -44,7 +51,7 @@ export class NewCustomerModal {
                     this.newDealService.updateCustomerWithID(d, this.customerID, this.identityType).then(res => {
                         if (res) {
                             let toast = this.toastCtrl.create({
-                                message: 'This customer has been added already',
+                                message: this.message_exists,
                                 duration: 2500
                             });
                             toast.present();

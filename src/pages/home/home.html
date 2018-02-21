@@ -1,15 +1,16 @@
 <ion-header no-border>
   <ion-navbar color="primary">
     <ion-title>
-      Home
+      {{"HOME.HEADER"|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button color="secondColor" block (click)="navigateNewDeal()">New Deal</button>
-  <button ion-button color="secondColor" block (click)="navigateCheckCustomers()">Check Customers</button>
-  <button ion-button color="secondColor" block (click)="navigatePersonalFile()">Personal file</button>
+  <exit></exit>
+  <button ion-button color="secondColor" block (click)="navigateNewDeal()">{{"HOME.BUTTON_NEW_DEAL"|translate}}</button>
+  <button ion-button color="secondColor" block (click)="navigateCheckCustomers()">{{"HOME.BUTTON_CHECKING_CUSTOMERS"|translate}}</button>
+  <button ion-button color="secondColor" block (click)="navigatePersonalFile()">{{"HOME.BUTTON_PERSONAL_FILE"|translate}}</button>
 
- 
+  <!-- <div>{{ 'HELLO' | translate:param }}</div> -->
 </ion-content>

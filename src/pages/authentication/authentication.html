@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      {{'AUTHENTICATION.HEADER'|translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>{{'AUTHENTICATION.FIRST_NAME'|translate}}</ion-label>
+      <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{'AUTHENTICATION.LAST_NAME'|translate}}</ion-label>
+      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{'AUTHENTICATION.IDENTITY'|translate}}</ion-label>
+      <ion-input type="number" [(ngModel)]="identity"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!isPrivate">
+      <ion-label floating>{{'AUTHENTICATION.CORPORATION_NUMBER'|translate}}</ion-label>
+      <ion-input type="text" [(ngModel)]="numCor"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <button ion-button color="secondColor" block (click)="next()">{{'AUTHENTICATION.BUTTON_TEXT'|translate}}</button>
+  </div>
+</ion-content>
