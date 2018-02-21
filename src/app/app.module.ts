@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { FCM } from '@ionic-native/fcm';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -12,27 +13,32 @@ import 'rxjs/add/operator/map';
 
 //import { eStatus } from '../status-enumaration';
 import { AuthenticationPage } from '../pages/authentication/authentication.component';
-import { CheckingCustomersPage } from '../pages/checking-customers/checking-customers';
-import { DetailsModalPage } from '../pages/personal-file/details-modal/details-modal';
 import { Exit } from '../pages/exit/exit.component';
 import { ForgotPasswordModal } from '../pages/forgot-password/forgot-password.component';
 import { HomePage } from '../pages/home/home.component';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login.component';
+import { PersonalFilePage } from '../pages/personal-file/personal-file.component';
+import { Details } from '../pages/details-modal/details-modal';
 import { NewDealPage } from '../pages/new-deal/new-deal.component';
 import { NewCustomerModal } from '../pages/new-customer/new-customer';
 import { NewDealService } from '../services/new-deal.service';
-import { PersonalFilePage } from '../pages/personal-file/personal-file';
 import { RegisterPage } from '../pages/register/register.component';
 import { StartPage } from '../pages/start/start.component';
 import { UserService } from '../services/user.service';
+import { PastDueDatePage } from '../pages/past-due-date/past-due-date.component';
 
 import { FirebaseProvider } from '../providers/firebase/firebase';
 import { FilterStatusPipe } from '../pages/share/filters';
+import { CustomerToCheck } from '../pages/checking-customers/customer-to-check-modal/customer-to-check-modal';
+import { BlockDetails } from '../pages/checking-customers/block-details-modal/block-details-modal';
+import { FCMService } from '../services/FCMService';
+import { CheckingCustomersPage } from '../pages/checking-customers/checking-customers.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  //return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -41,7 +47,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthenticationPage,
     MyApp,
     CheckingCustomersPage,
-    DetailsModalPage,
     Exit,
     ForgotPasswordModal,
     HomePage,
@@ -51,7 +56,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     PersonalFilePage,
     RegisterPage,
     StartPage,
-    FilterStatusPipe
+    Details,
+    BlockDetails,
+    FilterStatusPipe,
+    PastDueDatePage,
+    CustomerToCheck
   ],
   imports: [
     BrowserModule,
@@ -70,7 +79,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthenticationPage,
     MyApp,
     CheckingCustomersPage,
-    DetailsModalPage,
     ForgotPasswordModal,
     HomePage,
     LoginPage,
@@ -78,10 +86,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewCustomerModal,
     PersonalFilePage,
     RegisterPage,
-    StartPage
+    StartPage,
+    Details,
+    BlockDetails,
+    PastDueDatePage,
+    CustomerToCheck
   ],
   providers: [
     Camera,
+    FCM,
+    FCMService,
     NewDealService,
     StatusBar,
     SplashScreen,

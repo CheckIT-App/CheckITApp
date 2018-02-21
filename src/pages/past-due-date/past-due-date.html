@@ -1,15 +1,14 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      תיק אישי
+      צ'קים שעבר זמן פירעונם
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <exit></exit>
   <div dir="rtl">
-
+    
     <ion-grid>
       <ion-row>
         <ion-col col-2>
@@ -40,15 +39,15 @@
         </ion-row>
         <div *ngFor="let check of Deal.checks" (click)="thisCheck(check)">
           <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
-            <ion-label > סכום: {{check.sum}}</ion-label>
-            <ion-label > סטטוס: {{check.status|filterStatus:searchTerm}}</ion-label>
+            <ion-label item-start> סכום: {{check.sum}}</ion-label>
+            <ion-label item-end> תאריך פרעון: {{check.dueDate}}</ion-label>
           </ion-item>
         </div>
       </div>
     </ion-list>
 
     <div dir="ltr">
-      <button ion-button color="mainColor" (click)="save()">שמור</button>
+     <button ion-button color="mainColor" (click)="save()">שמור</button>
     </div>
   </div>
 </ion-content>

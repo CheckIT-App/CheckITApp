@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home.component';
 import { LoginPage } from '../pages/login/login.component';
 import { RegisterPage } from '../pages/register/register.component';
 import { StartPage } from '../pages/start/start.component';
+import { FCMService } from '../services/FCMService';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { StartPage } from '../pages/start/start.component';
 export class MyApp {
   rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
+  constructor(fcmService: FCMService, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     firebase.initializeApp({
       apiKey: "AIzaSyAMKNoiaRQFFmPRttWwaEiYn82_9S24xyY",
       authDomain: "checkit-f199c.firebaseapp.com",
@@ -40,7 +41,7 @@ export class MyApp {
       // the lang to use, if the lang isn't available, it will use the current loader to get them
       //translate.use('he');
 
-      localStorage.removeItem('currentUser');//TO DELETE
+      //localStorage.removeItem('currentUser');//TO DELETE
       if (localStorage.getItem('currentUser') != null) 
         this.rootPage = HomePage;
       else

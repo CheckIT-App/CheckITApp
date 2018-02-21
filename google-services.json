@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "55755262892",
+    "firebase_url": "https://checkit-f199c.firebaseio.com",
+    "project_id": "checkit-f199c",
+    "storage_bucket": "checkit-f199c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55755262892:android:f1e8979272c7abf8",
+        "android_client_info": {
+          "package_name": "checkit.app.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55755262892-hq0vfe3d8bon8v0uaqbof47ar8u0jcge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP0VZMXewF9JO0dYmJVkMreB8GOnomFoI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

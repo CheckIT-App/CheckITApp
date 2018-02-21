@@ -4,9 +4,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import firebase from 'firebase';
 
-import { CheckingCustomersPage } from '../checking-customers/checking-customers';
+import { CheckingCustomersPage } from '../checking-customers/checking-customers.component';
+import { PersonalFilePage } from '../personal-file/personal-file.component';
+import { PastDueDatePage } from '../past-due-date/past-due-date.component';
 import { NewDealPage } from '../new-deal/new-deal.component';
-import { PersonalFilePage } from '../personal-file/personal-file';
 
 @Component({
   selector: 'page-home',
@@ -31,4 +32,8 @@ export class HomePage {
   navigatePersonalFile() {
     this.navCtrl.push(PersonalFilePage);
   }
+
+  navigatePastDueDate(){
+    this.navCtrl.push(PastDueDatePage);
+  } 
 }
