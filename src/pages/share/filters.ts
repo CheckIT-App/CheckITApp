@@ -9,12 +9,12 @@ export class FilterStatusPipe implements PipeTransform {
     transform (statusNumber: checkStatus, searchTerm: string = ""): any  {
        
         if (statusNumber == checkStatus.paid)
-            return "paid";
+            return "שולם";
         else
             if (statusNumber == checkStatus.returened)
-                return "returened" ;
+                return "חזר" ;
             else
-                return "notPaid";
+                return "לא שולם";
 
        }
 }

@@ -6,13 +6,14 @@ import firebase from 'firebase';
 
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
+import { FCMService } from '../services/FCMService';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = HomePage;
  
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, fcmService: FCMService) {
      firebase.initializeApp({
      apiKey: "AIzaSyAMKNoiaRQFFmPRttWwaEiYn82_9S24xyY",
     authDomain: "checkit-f199c.firebaseapp.com",

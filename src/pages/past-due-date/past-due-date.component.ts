@@ -1,16 +1,12 @@
-import { Component, OnInit, OnChanges, Pipe } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
-import 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
+import {  ModalController } from 'ionic-angular';
 
-import { DealService } from '../../services/deals.service'
-import { Check } from '../../models/checks';
-import { Customer } from '../../models/customer';
-import { Deal } from '../../models/deals';
-import { DetailsModalPage } from '../personal-file/details-modal/details-modal';
+import { Details } from '../details-modal/details-modal';
 import { checkStatus, status } from '../share/enums';
 import { FilterStatusPipe } from '../share/filters';
-import { Observable } from 'rxjs/Observable';
+import { Check } from '../../models/checks';
+import { Deal } from '../../models/deals';
+import { DealService } from '../../services/deals.service'
 
 @Component({
   selector: 'page-pastDueDate',
@@ -31,7 +27,7 @@ export class PastDueDatePage implements OnInit {
 
   //constructor
 
-  constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
+  constructor(public dealService: DealService, public modalCtrl: ModalController) {
 
   }
 
@@ -42,18 +38,23 @@ export class PastDueDatePage implements OnInit {
     var self = this;
 
     self.dealService.getDeals().then(res => {
-      //הקוד הזה לא עובד
-      this.deals = res.filter(d => {
-        return d.status == checkStatus.notPaid;
+      //הקוד הזה לא עובד\
+      this.deals=res;
+      console.log("1",this.deals);
+      this.deals.map(d => {
+        d.checks = d.checks.filter(c => {
+          return c.isDateOf == true;
+        });
+       
       });
-      this.deals.forEach(d => d.checks.filter(c => {
-        return c.status == checkStatus.notPaid;
-      }))
+      this.deals = this.deals.filter(d => {
+        return d.checks.length != 0;
+      });
     });
 
-    
+
   }
- 
+
 
   getItems(ev: any) {//search Deals 
 
@@ -67,13 +68,8 @@ export class PastDueDatePage implements OnInit {
     }
     if (this.orderProp != "")
       this.deals = this.sort();
-//הקוד עובד פה.
-      this.deals = this.deals.filter(d => {
-        return d.status == checkStatus.notPaid;
-      });
-      this.deals.forEach(d => d.checks.filter(c => {
-        return c.status == checkStatus.notPaid;
-      }))
+    //הקוד עובד פה.
+    this.PastDueDateChecks();
 
   }
 
@@ -85,19 +81,28 @@ export class PastDueDatePage implements OnInit {
   }
 
   PastDueDateChecks() {
-    let val = "d";
-    this.deals = this.dealService.getDealsFromService();
-    this.deals = this.deals.filter((item) => {
-      console.log(item);
-      return ((item.firstName + item.created).toLowerCase().indexOf(val.toLowerCase()) > -1);
+    
+    this.deals.map(d => {
+      d.checks = d.checks.filter(c => {
+        return c.isDateOf == true;
+      });
+     
     });
+    this.deals = this.deals.filter(d => {
+      return d.checks.length != 0;
+    });
+   
+    // if(d.checks.length==0){
+    //  console.log(this.deals.findIndex(s=>s==d))
+    //  this.deals.splice(this.deals.findIndex(s=>s==d));
+    // }
 
 
   }
 
   presentModal() {
 
-    let modal = this.modalCtrl.create(DetailsModalPage, { selectedCheck: this.selectedCheck });
+    let modal = this.modalCtrl.create(Details, { selectedCheck: this.selectedCheck });
     modal.present();
 
   }
@@ -105,6 +110,7 @@ export class PastDueDatePage implements OnInit {
   save() {
 
     this.dealService.save(this.deals);
+    this.PastDueDateChecks();
     this.selectedDeal = null;
 
   }

@@ -1,14 +1,15 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import {  NavParams, ViewController } from 'ionic-angular';
 
-import { Check } from '../../../models/checks';
-import { status, checkStatus } from '../../share/enums';
-import { sum } from '../../share/consts';
+import { Check } from '../../models/checks';
+import { sum } from '../share/consts';
+import { status, checkStatus } from '../share/enums';
+
 @Component({
   selector: 'page-DetailsModal',
   templateUrl: 'details-modal.html'
 })
-export class DetailsModalPage implements OnInit {
+export class Details implements OnInit {
 
 //members
 
@@ -60,7 +61,7 @@ export class DetailsModalPage implements OnInit {
       this.selectedCheck.expiredOn = null;
     }
     else
-      if (this.selectedCheck.dueDate != null) {
+      if (this.selectedCheck.expiredOn != null) {
         this.selectedCheck.status = checkStatus.paid;
       }
       else {

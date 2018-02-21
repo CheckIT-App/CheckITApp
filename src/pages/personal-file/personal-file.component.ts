@@ -1,14 +1,13 @@
-import { Component, OnInit, OnChanges, Pipe } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
-import { DealService } from '../../services/deals.service'
-import { Check } from '../../models/checks';
-import { Customer } from '../../models/customer';
-import { Deal } from '../../models/deals';
-import { DetailsModalPage } from './details-modal/details-modal';
+import { Details } from '../details-modal/details-modal';
 import { status } from '../share/enums';
 import { FilterStatusPipe } from '../share/filters';
+import { Check } from '../../models/checks';
+import { Deal } from '../../models/deals';
+import { DealService } from '../../services/deals.service';
+
 
 @Component({
   selector: 'page-personalFile',
@@ -17,7 +16,7 @@ import { FilterStatusPipe } from '../share/filters';
 
 })
 export class PersonalFilePage implements OnInit {
-//members
+  //#region members
 
   checks: Check[];
   deals: Deal[] = [];
@@ -25,14 +24,14 @@ export class PersonalFilePage implements OnInit {
   selectedCheck: Check;
   selectedDeal: Deal;
   title = "התיק האישי שלי";
+  //#endregion
+  //constructor
 
-//constructor
-
-  constructor( public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
+  constructor(public dealService: DealService, public modalCtrl: ModalController) {
 
   }
 
-//functions
+  //functions
 
   getDeals() {//import Deals from service
 
@@ -65,9 +64,9 @@ export class PersonalFilePage implements OnInit {
 
   presentModal() {
 
-    let modal = this.modalCtrl.create(DetailsModalPage, { selectedCheck: this.selectedCheck });
+    let modal = this.modalCtrl.create(Details, { selectedCheck: this.selectedCheck });
     modal.present();
-   
+
   }
 
   save() {
@@ -83,9 +82,9 @@ export class PersonalFilePage implements OnInit {
       return this.deals
         .slice(0) // Make a copy
         .sort((a, b) => {
-          if (a[this.orderProp] < b[this.orderProp]) {
+          if (a[this.orderProp] > b[this.orderProp]) {
             return -1;
-          } else if ([b[this.orderProp] < a[this.orderProp]]) {
+          } else if ([b[this.orderProp] > a[this.orderProp]]) {
             return 1;
           } else {
             return 0;
@@ -113,7 +112,7 @@ export class PersonalFilePage implements OnInit {
         d.checks.forEach(c => {
           if (c == this.selectedCheck) {
             c.updateStatus = this.selectedCheck.updateStatus;
-              }
+          }
         }));
     }
     this.selectedCheck = Check;

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            Customer
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div dir="rtl">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>הכנס ת.ז. או מספר דרכון :</ion-label>
+                <ion-input type="number" dir="ltr" [(ngModel)]="id"></ion-input>
+            </ion-item>
+        </ion-list>
+        <div dir="ltr">
+            <button ion-button color="primary" (click)="ok()">אישור</button>
+        </div>
+    </div>
+</ion-content>

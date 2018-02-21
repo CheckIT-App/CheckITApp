@@ -3,9 +3,10 @@ import { NavController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
-import { CheckingCustomersPage } from '../checkingCustomers/checkingCustomers';
+import { CheckingCustomersPage } from '../checking-customers/checking-customers.component';
 import { NewCheckPage } from '../newCheck/newCheck';
-import { PersonalFilePage } from '../personal-file/personal-file';
+import { PersonalFilePage } from '../personal-file/personal-file.component';
+import { PastDueDatePage } from '../past-due-date/past-due-date.component';
 
 @Component({
   selector: 'page-home',
@@ -27,5 +28,8 @@ users=firebase.database().ref('users/-KrjqXsU6q1olWIeiXGA/name');
 
   navigatePersonalFile(){
     this.navCtrl.push(PersonalFilePage);
+  } 
+  navigatePastDueDate(){
+    this.navCtrl.push(PastDueDatePage);
   } 
 }
