@@ -17,7 +17,7 @@
         <ion-col col-4>
           <ion-select [(ngModel)]="orderProp" okText="אישור" cancelText="בטל" (ionChange)="sort()">
             <ion-option value="firstName">שם</ion-option>
-            <ion-option value="timeStamp">תאריך</ion-option>
+            <ion-option value="created">תאריך</ion-option>
           </ion-select>
         </ion-col>
         <ion-col col-6>
@@ -39,8 +39,8 @@
         </ion-row>
         <div *ngFor="let check of Deal.checks" (click)="thisCheck(check)">
           <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
-            <ion-label item-start> סכום: {{check.sum}}</ion-label>
-            <ion-label item-end> תאריך פרעון: {{check.dueDate}}</ion-label>
+            <ion-label > סכום: {{check.sum}}</ion-label>
+            <ion-label dir="rtl"> תאריך פרעון: {{check.dueDate}}</ion-label>
           </ion-item>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 import { Details } from '../details-modal/details-modal';
 import { checkStatus, openOption, status } from '../share/enums';
@@ -9,7 +10,6 @@ import { Check } from '../../models/checks';
 import { Deal } from '../../models/deals';
 import { DealService } from '../../services/deals.service'
 import { BlockDetails } from './block-details-modal/block-details-modal';
-import { Title } from '@angular/platform-browser/src/browser/title';
 
 
 
@@ -24,29 +24,31 @@ export class CheckingCustomersPage {
   checks: Check[];
   deals: Deal[] = [];
   notPaidDeals: Deal[] = [];
-  notPaidDealsLength: number;
+  notPaidDealsLength: number = 0;
   paidDeals: Deal[] = [];
-  paidDealsLength: number;
+  paidDealsLength: number = 0;
   pastDueDateDeals: Deal[] = [];
-  pastDueDateDealsLength: number;
+  pastDueDateDealsLength: number = 0;
   orderProp = "";
   selectedCheck: Check;
   selectedCheckStatus: checkStatus;
   selectedDeal: Deal;
   selectedOption: openOption;
   title = " עסקאות לקוח";
+  l: any = localStorage.getItem('language');
   //#endregion 
 
   //#region constructor
-  constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
-
+  constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController, public alertCtrl: AlertController) {
+    if (localStorage.getItem('language') == 'en')
+      document.dir = 'ltr';
   }
   //#endregion
 
   //#region lifecycle functions
   ngOnInit(): void {
 
-    this.presentModalCustomerToCheck('הכנס מספר ת.ז. או דרכון',false);
+    this.presentModalCustomerToCheck('הכנס מספר ת.ז. או דרכון', false);
     //this.getDeals();
 
   }
@@ -170,7 +172,9 @@ export class CheckingCustomersPage {
     this.paidDeals = this.paidDeals.filter(d => {
       return d.checks.length > 0;
     });
-    this.paidDealsLength = this.paidDeals.length;
+    this.paidDeals.forEach(d => {
+      this.paidDealsLength += d.checks.length;
+    });
 
     this.notPaidDeals.map(d => {
       d.checks = d.checks.filter(c => {
@@ -180,7 +184,9 @@ export class CheckingCustomersPage {
     this.notPaidDeals = this.notPaidDeals.filter(d => {
       return d.checks.length > 0;
     });
-    this.notPaidDealsLength = this.notPaidDeals.length;
+    this.notPaidDeals.forEach(d => {
+      this.notPaidDealsLength += d.checks.length;
+    });
 
     this.pastDueDateDeals.map(d => {
       d.checks = d.checks.filter(c => {
@@ -190,7 +196,21 @@ export class CheckingCustomersPage {
     this.pastDueDateDeals = this.pastDueDateDeals.filter(d => {
       return d.checks.length > 0;
     });
-    this.pastDueDateDealsLength = this.pastDueDateDeals.length;
+    this.pastDueDateDeals.forEach(d => {
+      this.pastDueDateDealsLength += d.checks.length;
+    });
+  }
+
+  presentAlert(message) {
+    let alert = this.alertCtrl.create({
+      subTitle: message,
+      buttons: ['אישור']
+    });
+    alert.present();
+    alert.onDidDismiss(() => {
+      this.presentModalCustomerToCheck('אין נתונים על לקוח זה', false);
+
+    })
   }
 
   presentModal() {//present model of a single check
@@ -200,25 +220,35 @@ export class CheckingCustomersPage {
 
 
 
+
   }
 
-  presentModalCustomerToCheck(message,alert) {//present modal of a customer details for check his history 
+  presentModalCustomerToCheck(message, alert) {//present modal of a customer details for check his history 
 
-    let modal = this.modalCtrl.create(CustomerToCheck, { messaging: message,alerting:alert });
+    let modal = this.modalCtrl.create(CustomerToCheck, { messaging: message, alerting: alert });
     modal.present();
     modal.onDidDismiss(data => {
-      this.dealService.getDealsForCustomer(parseInt(data.id), data.type).then(res => {
-        if (res!=[]) {
+      if (data) {
+        this.dealService.getDealsForCustomer(parseInt(data.id), data.type).then(res => {
           this.deals = res;
-          //this.title+=" "+this.deals[0].firstName;
-          console.log("r", res);
-          this.orderDeals();
+          if (res.length != 0) {
+            console.log("r", res);
+            this.title += " " + this.deals[0].firstName;
+            this.orderDeals();
+          }
+          else {
+            this.presentAlert('אין נתונים על לקוח זה');
+          }
         }
-        else{
-          this.presentModalCustomerToCheck('אין נתונים על לקוח זה',true);
-        }
-      });
-    })
+        );
+      }
+      else{
+        this.navCtrl.pop();
+      }
+    }
+
+    )
+
 
   }
 

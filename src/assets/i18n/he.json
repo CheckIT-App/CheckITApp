@@ -67,5 +67,37 @@
         "ADDRESS":"כתובת",
         "TEXT_REGISTER":"רישום",
         "TEXT_EXISTS":"לקוח קיים?"
+    },
+    "PERSONAL_FILE": {
+        "HEADER": "תיק אישי",
+        "SORT_BY":"מיין לפי",
+        "OK":"אישור",
+        "CANCEL":"בטל",
+        "NAME":"שם",
+        "DATE":"תאריך",
+        "SEARCH":"חפש",
+        "TITEL":"התיק האישי שלי",
+        "DEAL_DATE":"תאריך עסקה",
+        "SUM":"סכום",
+        "STATUS":"סטטוס",
+        "SAVE":"שמור",
+        "FIRST_DIR":"rtl",
+        "SECOND_DIR":"ltr"  
+    },
+    "PAST_DUE_DATE": {
+        "HEADER": "עבר זמן פרעון",
+        "SORT_BY":"מיין לפי",
+        "OK":"אישור",
+        "CANCEL":"בטל",
+        "NAME":"שם",
+        "DATE":"תאריך",
+        "SEARCH":"חפש",
+        "TITEL":"צ'קים שעבר זמן פרעונם",
+        "DEAL_DATE":"תאריך עסקה",
+        "SUM":"סכום",
+        "STATUS":"סטטוס",
+        "SAVE":"שמור",
+        "FIRST_DIR":"rtl",
+        "SECOND_DIR":"ltr"  
     }
 }

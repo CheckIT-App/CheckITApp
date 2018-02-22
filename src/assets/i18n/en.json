@@ -32,40 +32,72 @@
     "EXIT": {
         "BUTTON_TEXT": "Exit"
     },
-    "FORGOT_PASSWORD":{
-        "HEADER":"Forgot password",
-        "INPUT_TEXT":"Enter your email address",
-        "BUTTON_TEXT":"OK"
+    "FORGOT_PASSWORD": {
+        "HEADER": "Forgot password",
+        "INPUT_TEXT": "Enter your email address",
+        "BUTTON_TEXT": "OK"
     },
-    "ADD_CUSTOMER":{
-        "HEADER":"New customer",
-        "IDENTITY":"Identity (optional)",
-        "PASSPORT":"Passport (optional)",
-        "FIRST_NAME":"First name",
-        "LAST_NAME":"Last name",
-        "BUTTON_TEXT":"ADD"
+    "ADD_CUSTOMER": {
+        "HEADER": "New customer",
+        "IDENTITY": "Identity (optional)",
+        "PASSPORT": "Passport (optional)",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "BUTTON_TEXT": "ADD"
     },
-    "NEW_DEAL":{
-        "HEADER":"New Deal",
-        "ID":"identity",
-        "PASSPORT":"passport",
-        "CHECK_NUMBER":"check number",
+    "NEW_DEAL": {
+        "HEADER": "New Deal",
+        "ID": "identity",
+        "PASSPORT": "passport",
+        "CHECK_NUMBER": "check number",
+        "SUM": "sum",
+        "BANK": "bank",
+        "BRANCH": "branch",
+        "DUE_DATE": "due date",
+        "BUTTON_TEXT": "ADD"
+    },
+    "REGISTER": {
+        "HEADER": "Register",
+        "AUTHENTICATION_PASSWORD": "authenicate your password",
+        "PASSWORD": "password",
+        "USERNAME": "username",
+        "EMAIL": "email",
+        "MOBILE": "mobile",
+        "TELEPHONE": "telephone (not required)",
+        "ADDRESS": "address",
+        "TEXT_REGISTER": "Register",
+        "TEXT_EXISTS": "Exists user"
+    },
+    "PERSONAL_FILE": {
+        "HEADER": "personal file",
+        "SORT_BY":"sort by",
+        "OK":"ok",
+        "CANCEL":"cancel",
+        "NAME":"name",
+        "DATE":"date",
+        "SEARCH":"search",
+        "TITEL":"my personal file",
+        "DEAL_DATE":"deal date",
         "SUM":"sum",
-        "BANK":"bank",
-        "BRANCH":"branch",
-        "DUE_DATE":"due date",
-        "BUTTON_TEXT":"ADD"
+        "STATUS":"status",
+        "SAVE":"save",
+        "FIRST_DIR":"ltr",
+        "SECOND_DIR":"rtl"
     },
-    "REGISTER":{
-        "HEADER":"Register",
-        "AUTHENTICATION_PASSWORD":"authenicate your password",
-        "PASSWORD":"password",
-        "USERNAME":"username",
-        "EMAIL":"email",
-        "MOBILE":"mobile",
-        "TELEPHONE":"telephone (not required)",
-        "ADDRESS":"address",
-        "TEXT_REGISTER":"Register",
-        "TEXT_EXISTS":"Exists user"
+    "PAST_DUE_DATE":{
+        "HEADER": "past due date",
+        "SORT_BY":"sort by",
+        "OK":"ok",
+        "CANCEL":"cancel",
+        "NAME":"name",
+        "DATE":"date",
+        "SEARCH":"search",
+        "TITEL":"past due date checks",
+        "DEAL_DATE":"deal date",
+        "SUM":"sum",
+        "STATUS":"status",
+        "SAVE":"save",
+        "FIRST_DIR":"ltr",
+        "SECOND_DIR":"rtl"
     }
 }

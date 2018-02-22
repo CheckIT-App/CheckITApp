@@ -31,7 +31,7 @@ export class DealService {
         let self = this;
 
         try {
-            let userDeals = firebase.database().ref("user_deals/-L5PFYD_GDQ6dGW42MTQ").once("value");/*localStorage.getItem('currentUser')*/
+            let userDeals = firebase.database().ref("user_deals/" + localStorage.getItem('currentUser')).once("value");/*localStorage.getItem('currentUser')*/
             let checks = firebase.database().ref("checks")/*.startAt('filterByUserID') //.endAt('filterByUserID')*/.once("value");//TODO: Filter by userID
             return Promise.all([userDeals, checks]).then((res: any[]) => {
                 let deals = res[0];
@@ -113,14 +113,17 @@ export class DealService {
                 'sum': sum,
                 'status': dealStatus,
             });
-            firebase.database().ref('user_deals/' + d.dealKey).update({//TODO:user
+            firebase.database().ref('user_deals/' + localStorage.getItem('currentUser')+"/"+ d.dealKey).update({
+                'status': dealStatus,
+            });
+            firebase.database().ref('user_deals/' + d.customerUid+"/"+d.dealKey).update({//TODO:user
                 'status': dealStatus,
             });
         });
     }
     getDealsForCustomer(ID: number, kind: idOrPassport): Promise<any> {
         let self = this;
-        self.customerDeals=[];
+        self.customerDeals = [];
         try {
             if (kind == idOrPassport.id && ID) {
                 let customer = firebase.database().ref('customers_profiles').orderByChild('cusID')
@@ -158,51 +161,56 @@ export class DealService {
     }
 
     getCustomerDeals(s) {
-        try{
-        let self = this;
-        self.customerDeals = [];
-        let deals = firebase.database().ref('customer_deals/' + s).once('value');
-        let checks = firebase.database().ref('checks').once('value');
-        return Promise.all([deals, checks]).then((res: any[]) => {
-            console.log("vvv");
-            let deals = res[0];
-            let checks = res[1];
-            deals.forEach(function (deal) {
-                let newDeal = {
-                    checks: [],
-                    created: new Date(deal.child("created").val()).toLocaleDateString(),
-                    customerUid: s,
-                    dealKey: deal.key,
-                    firstName: deal.child("customer_name").val(),//TODO: Add to user_deals table
-                    status: deal.child("status").val(),
-                }
-                deal.child("checks").forEach(function (checkId) {
-                    let check = checks.val()[checkId.val()];
-                    let newCheck = {
-                        bank: check.bank,
-                        branch: check.branch,
-                        checkKey: checkId.val(),
-                        dealKey: check.deal_key,
-                        dueDate: check.due_date,
-                        expiredOn: check.expired_on,
-                        id: check.id,
-                        isDateOf: check.is_dat_of,
-                        status: check.status,
-                        sum: check.sum,
-                        updateStatus: status.notUpdate,
-                    };
-                    if (new Date(newCheck.dueDate).getTime() < Date.now() && !newCheck.isDateOf) {
-                        newCheck.isDateOf = true;
-                        newCheck.updateStatus = status.update;
+        try {
+            let self = this;
+            self.customerDeals = [];
+            let deals = firebase.database().ref('customer_deals/' + s).once('value');
+            let checks = firebase.database().ref('checks').once('value');
+            return Promise.all([deals, checks]).then((res: any[]) => {
+                let deals = res[0];
+                let checks = res[1];
+                deals.forEach(function (deal) {
+                    console.log("d",deal.child("checks").val());
+                    if (deal.child("checks").val()) {
+                        let newDeal = {
+                            checks: [],
+                            created: new Date(deal.child("created").val()).toLocaleDateString(),
+                            customerUid: s,
+                            dealKey: deal.key,
+                            firstName: deal.child("customer_name").val(),//TODO: Add to user_deals table
+                            status: deal.child("status").val(),
+                        }
+                        deal.child("checks").forEach(function (checkId) {
+                            console.log("c", checkId);
+                            let check = checks.val()[checkId.val()];
+                            let newCheck = {
+                                bank: check.bank,
+                                branch: check.branch,
+                                checkKey: checkId.val(),
+                                dealKey: check.deal_key,
+                                dueDate: check.due_date,
+                                expiredOn: check.expired_on,
+                                id: check.id,
+                                isDateOf: check.is_dat_of,
+                                status: check.status,
+                                sum: check.sum,
+                                updateStatus: status.notUpdate,
+                            };
+                            if (new Date(newCheck.dueDate).getTime() < Date.now() && !newCheck.isDateOf) {
+                                newCheck.isDateOf = true;
+                                newCheck.updateStatus = status.update;
+                            }
+                            newDeal.checks.push(newCheck);
+                        })
+                        self.customerDeals.push(newDeal);
                     }
-                    newDeal.checks.push(newCheck);
-                })
-                self.customerDeals.push(newDeal);
-            });
-            console.log("p");
-            return self.customerDeals;
-        })}
-        catch(e){}
+                });
+                console.log(self.customerDeals);
+                return self.customerDeals;
+            })
+
+        }
+        catch (e) { }
     }
 
     getDealsFromService(): Deal[] {

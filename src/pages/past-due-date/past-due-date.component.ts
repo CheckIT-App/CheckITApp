@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  ModalController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 import { Details } from '../details-modal/details-modal';
 import { checkStatus, status } from '../share/enums';
@@ -24,11 +24,12 @@ export class PastDueDatePage implements OnInit {
   selectedDeal: Deal;
   title = "צ'קים שעבר זמן פירעונם";
   today = Date.now();
-
+  l: any = localStorage.getItem('language');
   //constructor
 
   constructor(public dealService: DealService, public modalCtrl: ModalController) {
-
+    if (localStorage.getItem('language') == 'en')
+      document.dir = 'ltr';
   }
 
   //functions
@@ -39,13 +40,13 @@ export class PastDueDatePage implements OnInit {
 
     self.dealService.getDeals().then(res => {
       //הקוד הזה לא עובד\
-      this.deals=res;
-      console.log("1",this.deals);
+      this.deals = res;
+      console.log("1", this.deals);
       this.deals.map(d => {
         d.checks = d.checks.filter(c => {
-          return c.isDateOf == true;
+          return c.isDateOf == true && c.status != checkStatus.paid;
         });
-       
+
       });
       this.deals = this.deals.filter(d => {
         return d.checks.length != 0;
@@ -81,17 +82,17 @@ export class PastDueDatePage implements OnInit {
   }
 
   PastDueDateChecks() {
-    
+
     this.deals.map(d => {
       d.checks = d.checks.filter(c => {
         return c.isDateOf == true;
       });
-     
+
     });
     this.deals = this.deals.filter(d => {
       return d.checks.length != 0;
     });
-   
+
     // if(d.checks.length==0){
     //  console.log(this.deals.findIndex(s=>s==d))
     //  this.deals.splice(this.deals.findIndex(s=>s==d));

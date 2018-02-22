@@ -24,6 +24,7 @@ export class PersonalFilePage implements OnInit {
   selectedCheck: Check;
   selectedDeal: Deal;
   title = "התיק האישי שלי";
+  l:any=localStorage.getItem('language');
   //#endregion
   //constructor
 

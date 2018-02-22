@@ -96,5 +96,8 @@ export class CustomerToCheck {
         });
         alert.present();
     }
+    dismiss(){
+        this.viewCtrl.dismiss();
+    }
     //#endregion    
 }
