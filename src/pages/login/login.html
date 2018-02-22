@@ -16,7 +16,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label floating>{{ 'LOGIN.PASSPORT' | translate }}</ion-label>
+    <ion-label floating>{{ 'LOGIN.PASSWORD' | translate }}</ion-label>
     <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
 
@@ -25,6 +25,6 @@
     <button ion-button color="secondColor" block (click)="login()">{{ 'LOGIN.BUTTON_LOGIN' | translate }}</button>
     <button ion-button color="mainColor" block (click)="navigateNewUser()">{{ 'LOGIN.BUTTON_REGISTER' | translate }}</button>
 </div>
-<button ion-button clear (click)="forgotPassword()">forgot password</button>
+<button ion-button clear (click)="forgotPassword()">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</button>
 
 </ion-content>

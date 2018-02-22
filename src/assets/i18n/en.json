@@ -1,9 +1,11 @@
 {
     "LOGIN": {
+        "HEADER":"Login",
         "USER_NAME": "User Name",
-        "PASSPORT": "Passport",
+        "PASSWORD": "Password",
         "BUTTON_LOGIN": "Login",
-        "BUTTON_REGISTER": "New User?"
+        "BUTTON_REGISTER": "New User?",
+        "FORGOT_PASSWORD":"Forgot password"
     },
     "START": {
         "HEADER": "Start",
@@ -56,18 +58,6 @@
         "DUE_DATE": "due date",
         "BUTTON_TEXT": "ADD"
     },
-    "REGISTER": {
-        "HEADER": "Register",
-        "AUTHENTICATION_PASSWORD": "authenicate your password",
-        "PASSWORD": "password",
-        "USERNAME": "username",
-        "EMAIL": "email",
-        "MOBILE": "mobile",
-        "TELEPHONE": "telephone (not required)",
-        "ADDRESS": "address",
-        "TEXT_REGISTER": "Register",
-        "TEXT_EXISTS": "Exists user"
-    },
     "PERSONAL_FILE": {
         "HEADER": "personal file",
         "SORT_BY":"sort by",
@@ -98,6 +88,29 @@
         "STATUS":"status",
         "SAVE":"save",
         "FIRST_DIR":"ltr",
-        "SECOND_DIR":"rtl"
+        "SECOND_DIR":"rtl",
+        "BANK":"bank",
+        "BRANCH":"branch",
+        "DUE_DATE":"due date",
+        "BUTTON_TEXT":"ADD",
+        "BUTTON_FINISH":"Finish"
+    },
+    "REGISTER":{
+        "HEADER":"Register",
+        "AUTHENTICATION_PASSWORD":"authenicate your password",
+        "PASSWORD":"password",
+        "USERNAME":"username",
+        "EMAIL":"email",
+        "MOBILE":"mobile",
+        "TELEPHONE":"telephone (not required)",
+        "ADDRESS":"address",
+        "TEXT_REGISTER":"Register",
+        "TEXT_EXISTS":"Exists user",
+        "PASSWORD1_VALID":"enter password 8 chars (at least), with digits and letters in upper and lower case",
+        "PASSWORD2_VALID":"enter password 8 chars (at least), with digits and letters in upper and lower case. make sure it's same to the above password",
+        "USERNAME_VALID":"enter username 5 - 25 chars",
+        "EMAIL_VALID":"not valid",
+        "MOBILE_VALID":"not valid",
+        "ADDRESS_VALID":"required"
     }
 }

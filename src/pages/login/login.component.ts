@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   login() {
-    if (this.username != "" && this.password != "") {
+    if (this.username && this.password ) {
       this.userService.checkUser(this.username, this.password).then(res => {
         if (res) {
           this.navCtrl.push(HomePage);
