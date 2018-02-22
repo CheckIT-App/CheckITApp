@@ -1,4 +1,4 @@
-import { AlertController,ModalController, NavController, ToastController } from 'ionic-angular';
+import { AlertController, ModalController, NavController, ToastController } from 'ionic-angular';
 import { Component } from '@angular/core';
 
 
@@ -25,7 +25,7 @@ export class NewDealPage {
   currentDealKey: string;
   isNewDeal: boolean;
   maxDay: Date;//to ask about the range of the due-date
-  message:string="הצ'ק הוסף בהצלחה. אם ברצונך להוסיף צ'ק נוסף, מלא את השדות ולחץ ,'הוסף'";
+  message: string = "הצ'ק הוסף בהצלחה. אם ברצונך להוסיף צ'ק נוסף, מלא את השדות ולחץ ,'הוסף'";
   minDay: Date;
 
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, public modalCtrl: ModalController, public formBuilder: FormBuilder, public newDealService: NewDealService,
@@ -44,9 +44,9 @@ export class NewDealPage {
       branch: ['', Validators.compose([Validators.required, IsNumberValidator.isValid])],//to add validation?
       dueDate: ['', Validators.compose([Validators.required, IsRelevantDateValidator.isValid])]
     });
-    if(localStorage.getItem('language')=='en'){
-           document.dir='ltr'; 
-           this.message='Check was added successfully. If you want to add one more check, fill the fields above and click \'ADD\' ';
+    if (localStorage.getItem('language') == 'en') {
+      document.dir = 'ltr';
+      this.message = 'Check was added successfully. If you want to add one more check, fill the fields above and click \'ADD\' ';
     }
 
   }
@@ -174,6 +174,10 @@ export class NewDealPage {
         this.addCheck();
       }
     }
+  }
+
+  navigateHome() {
+    this.navCtrl.pop();
   }
 
 

@@ -23,8 +23,9 @@ export class NewCustomerModal {
     public addCustomerForm: FormGroup;
     customerID: string;
     identityType: string;
+    isPassport: boolean;
     message_exists: string = 'הלקוח כבר קיים במערכת';
-    optionalIdentityType: string;
+    optionalIdentityType: string = "PASSPORT";
 
     constructor(public navCtrl: NavController, public viewCtrl: ViewController, public toastCtrl: ToastController, public navParams: NavParams, public formBuilder: FormBuilder, public newDealService: NewDealService,
         public cameraPlugin: Camera) {
@@ -35,6 +36,7 @@ export class NewCustomerModal {
         });
         this.customerID = navParams.get('ID');
         this.identityType = navParams.get('type');
+        this.isPassport = this.identityType == "ID" ? false : true;
         this.optionalIdentityType = this.identityType == "ID" ? "PASSPORT" : "IDENTITY";
         this.addCustomerForm.controls.identity.setValidators(this.identityType == "ID" ? IsID.checkPassport : IsID.checkID);
         if (localStorage.getItem('language') == 'en') {

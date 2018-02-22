@@ -38,61 +38,64 @@ export class AuthenticationPage {
   next() {
     this.fullName = this.firstName + " " + this.lastName;
     console.log(this.firstName + "  " + this.lastName + "   " + this.identity);
-    this.httpClient.get('http://exchangep.mof.gov.il/api/AppInfo/getExchanges/')
-      .toPromise()
-      .then((data: any[]) => {
-        if (!this.isPrivate) {
-          let i: number;
-          for (i = 0; i < data.length; i++) {
-            if (data[i].NumCorporation == this.numCor) {
-              this.isExistsInList = true;
-              break;
+    if (IsID.checkIDAsNumber(this.identity) == null && this.firstName && this.lastName && (this.numCor || this.isPrivate)) {
+      this.httpClient.get('http://exchangep.mof.gov.il/api/AppInfo/getExchanges/')
+        .toPromise()
+        .then((data: any[]) => {
+          if (!this.isPrivate) {
+            let i: number;
+            for (i = 0; i < data.length; i++) {
+              if (data[i].NumCorporation == this.numCor) {
+                this.isExistsInList = true;
+                break;
+              }
             }
-          }
-          if (this.isExistsInList && IsID.checkIDAsNumber(this.identity) == null && this.firstName && this.lastName && this.numCor) {
-            this.navCtrl.push(RegisterPage, { corporationType: this.navParams.get("corporationType"), firstName: this.firstName, lastName: this.lastName, identity: this.identity, numCorporation: this.numCor });
-          }
-          else {
-            this.toastCtrl.create({ message: this.message_details, duration: 2500 }).present();
-          }
-        }
-        else {
-          let branchId: number;
-          let i: number;
-          for (i = 0; i < data.length; i++) {
-            if (data[i].CorporateName == this.fullName) {
-              this.isExistsInList = true;
-              branchId = data[i].BranchId;
-              break;
+            if (this.isExistsInList && IsID.checkIDAsNumber(this.identity) == null && this.firstName && this.lastName && this.numCor) {
+              this.navCtrl.push(RegisterPage, { corporationType: this.navParams.get("corporationType"), firstName: this.firstName, lastName: this.lastName, identity: this.identity, numCorporation: this.numCor });
             }
-          }
-          if (branchId) {
-            this.httpClient.get('http://exchangep.mof.gov.il/api/AppInfo/getSpecExchange/0/' + branchId)
-              .toPromise()
-              .then((data: any[]) => {
-                if (data[0].CorManagerIdNumber == this.identity) {
-                  //Verified User
-                  this.isExistsInList = true;
-                  console.log("Verified User");
-                  this.navCtrl.push(RegisterPage, { corporationType: this.navParams.get("corporationType"), firstName: this.firstName, lastName: this.lastName, identity: this.identity, numCorporation: 0 });
-                }
-
-              })
-              .catch(ex => {
-                this.toastCtrl.create({ message: 'ERROR!', duration: 2500 }).present();
-                console.log(ex);
-                throw ex;
-              });
-            if (!this.isExistsInList) {
+            else {
               this.toastCtrl.create({ message: this.message_details, duration: 2500 }).present();
             }
           }
-        }
-      })
-      .catch(ex => {
-        this.toastCtrl.create({ message: 'ERROR!', duration: 2500 }).present();
-        console.log(ex);
-        throw ex;
-      });
+          else {
+            let branchId: number;
+            let i: number;
+            for (i = 0; i < data.length; i++) {
+              if (data[i].CorporateName == this.fullName) {
+                this.isExistsInList = true;
+                branchId = data[i].BranchId;
+                break;
+              }
+            }
+            if (branchId) {
+              this.httpClient.get('http://exchangep.mof.gov.il/api/AppInfo/getSpecExchange/0/' + branchId)
+                .toPromise()
+                .then((data: any[]) => {
+                  if (data[0].CorManagerIdNumber == this.identity) {
+                    //Verified User
+                    this.isExistsInList = true;
+                    console.log("Verified User");
+                    this.navCtrl.push(RegisterPage, { corporationType: this.navParams.get("corporationType"), firstName: this.firstName, lastName: this.lastName, identity: this.identity, numCorporation: 0 });
+                  }
+
+                })
+                .catch(ex => {
+                  this.toastCtrl.create({ message: 'ERROR!', duration: 2500 }).present();
+                  console.log(ex);
+                  throw ex;
+                });
+              if (!this.isExistsInList) {
+                this.toastCtrl.create({ message: this.message_details, duration: 2500 }).present();
+              }
+            }
+          }
+        })
+        .catch(ex => {
+          this.toastCtrl.create({ message: 'ERROR!', duration: 2500 }).present();
+          console.log(ex);
+          //throw ex;
+        });
+    }
+
   }
 }

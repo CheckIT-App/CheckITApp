@@ -15,8 +15,15 @@ import 'rxjs/add/operator/map';
 
 export class RegisterPage {
 
+  message_welcome: string="ברוך הבא לCheckIt! נרשמת בהצלחה";
   passIsFilled: boolean;
   registerForm: FormGroup;
+  username_valid:boolean=true;
+  password1_valid:boolean=true;
+  password2_valid:boolean=true;
+  email_valid:boolean=true;
+  address_valid:boolean=true;
+  mobile_valid:boolean=true;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public navParams: NavParams, public toastCtrl: ToastController, public userService: UserService) {
     this.registerForm = formBuilder.group({
@@ -28,8 +35,11 @@ export class RegisterPage {
       telephone: [''],//אם זה הולך לשנות גם ההכנסת עסקה
       address: ['', Validators.compose([Validators.required])]
     });
-    if(localStorage.getItem('language')=='en')
-      document.dir='ltr';
+    if (localStorage.getItem('language') == 'en') {
+      document.dir = 'ltr';
+      this.message_welcome = 'Welcome to CheckIT! You were added successfuly';
+    }
+
   }
 
   authPassword(): boolean {
@@ -57,6 +67,13 @@ export class RegisterPage {
       && this.registerForm.controls.address.valid
       && this.registerForm.controls.telephone.valid)) {
       //TODO להוסיף הערות/הדגשות לשדות הריקים-הלא ולידיים
+      this.username_valid=this.registerForm.controls.username.valid;
+      this.password1_valid=this.registerForm.controls.password1.valid;
+      this.password2_valid=this.registerForm.controls.password2.valid||!this.passIsFilled;
+      this.email_valid=this.registerForm.controls.email.valid;
+      this.mobile_valid=this.registerForm.controls.number.valid;
+      this.address_valid=this.registerForm.controls.address.valid;
+      console.log(this.username_valid);
       console.log("Nice try!");
 
     }
@@ -67,7 +84,7 @@ export class RegisterPage {
         this.registerForm.value.telephone, this.registerForm.value.email, this.registerForm.value.address).then(data => {
           console.log(data);
           if (data != null) {
-            this.toastCtrl.create({ message: 'Welcome! You were added successfuly', duration: 2500 }).present().then(d => {
+            this.toastCtrl.create({ message: this.message_welcome, duration: 2500 }).present().then(d => {
               console.log(data);
               localStorage.setItem('currentUser', data);
               this.navCtrl.setRoot(HomePage/*, { UID: data }*/);//to navigate to LoginPage? to welcome page?

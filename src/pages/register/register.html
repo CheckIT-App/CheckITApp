@@ -14,17 +14,20 @@
         <ion-label floating>{{"REGISTER.USERNAME"|translate}}</ion-label>
         <ion-input formControlName="username" type="text"></ion-input>
       </ion-item>
+      <div *ngIf="!username_valid">{{"REGISTER.USERNAME_VALID"|translate}}</div>
       <!-- <div *ngIf="username.hasError('required') && username.touched" class="error-box">* Password is required</div> -->
       <ion-item>
         <ion-label floating>{{"REGISTER.PASSWORD"|translate}}</ion-label>
         <ion-input formControlName="password1" type="password" (change)="authPassword()"></ion-input>
       </ion-item>
-
+      <div *ngIf="!password1_valid">{{"REGISTER.PASSWORD1_VALID"|translate}}</div>
+      
       <ion-item *ngIf="passIsFilled">
         <ion-label floating>{{"REGISTER.AUTHENTICATION_PASSWORD"|translate}}</ion-label>
         <ion-input formControlName="password2" type="password"></ion-input>
       </ion-item>
-
+      <div *ngIf="!password2_valid">{{"REGISTER.PASSWORD2_VALID"|translate}}</div>
+      
       <!-- 
    <ion-item>
     <ion-label floating>First Name</ion-label>
@@ -48,12 +51,14 @@
         <ion-label floating>{{"REGISTER.EMAIL"|translate}}</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
       </ion-item>
-
+      <div *ngIf="!email_valid">{{"REGISTER.EMAIL_VALID"|translate}}</div>
+      
       <ion-item>
         <ion-label floating>{{"REGISTER.MOBILE"|translate}}</ion-label>
         <ion-input formControlName="number" type="tel"></ion-input>
       </ion-item>
-
+      <div *ngIf="!mobile_valid">{{"REGISTER.MOBILE_VALID"|translate}}</div>
+      
       <ion-item>
         <ion-label floating>{{"REGISTER.TELEPHONE"|translate}}</ion-label>
         <ion-input formControlName="telephone" type="tel"></ion-input>
@@ -63,7 +68,8 @@
         <ion-label floating>{{"REGISTER.ADDRESS"|translate}}</ion-label>
         <ion-input formControlName="address"></ion-input>
       </ion-item>
-
+      <div *ngIf="!address_valid">{{"REGISTER.ADDRESS_VALID"|translate}}</div>
+      
       <!-- <ion-item>
     <ion-label floating>Address</ion-label>
     <ion-input type="text"></ion-input>

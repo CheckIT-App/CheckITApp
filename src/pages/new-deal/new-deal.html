@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-  <exit></exit>
   <form [formGroup]="addDealForm" (submit)="addDeal()" novalidate>
     <ion-list>
 
@@ -59,5 +58,6 @@
 
     </ion-list>
     <button ion-button block type="submit">{{"NEW_DEAL.BUTTON_TEXT"|translate}}</button>
+    <button ion-button block color="secondColor" (click)="navigateHome()">{{"NEW_DEAL.BUTTON_FINISH"|translate}}</button>
   </form>
 </ion-content>

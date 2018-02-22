@@ -25,7 +25,7 @@ export class StartPage {
   }
 
   changeLang() {
-    console.log("enter");
+    console.log("enter"+this.lang);
     this.translate.use(this.lang);
     localStorage.setItem('language', this.lang);
     if (this.lang == "he") {

@@ -34,7 +34,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+      platform.setDir('rtl',true);
       // this language will be used as a fallback when a translation isn't found in the current language
       translate.setDefaultLang('he');
 
@@ -43,7 +43,7 @@ export class MyApp {
 
       //localStorage.removeItem('currentUser');//TO DELETE
       if (localStorage.getItem('currentUser') != null) 
-        this.rootPage = HomePage;
+        this.rootPage = LoginPage;
       else
         this.rootPage = LoginPage;
 

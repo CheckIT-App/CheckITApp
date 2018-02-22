@@ -1,20 +1,20 @@
 <ion-header>
     <ion-navbar color="primary">
-                <button ion-button clear color="light" (click)="dismiss()">Close</button>
+        <button ion-button clear color="light" (click)="dismiss()">Close</button>
         <ion-title>
             {{"ADD_CUSTOMER.HEADER"|translate}} - {{customerID}}
         </ion-title>
-
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <form [formGroup]="addCustomerForm" (submit)="addCustomer()" novalidate>
         <ion-list>
-            <!-- <ion-item>
-                <ion-label floating>{{"ADD_CUSTOMER."+{{optionalIdentityType}}|translate}}</ion-label>
+            <ion-item>
+                <ion-label *ngIf="!isPassport" floating>{{"ADD_CUSTOMER.PASSPORT"|translate}}</ion-label>
+                <ion-label *ngIf="isPassport" floating>{{"ADD_CUSTOMER.IDENTITY"|translate}}</ion-label>
                 <ion-input type="text" formControlName="identity" (change)="isExists()"></ion-input>
-            </ion-item> -->
+            </ion-item>
 
             <ion-item>
                 <ion-label floating>{{"ADD_CUSTOMER.FIRST_NAME"|translate}}</ion-label>
