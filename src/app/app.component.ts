@@ -43,7 +43,7 @@ export class MyApp {
 
       //localStorage.removeItem('currentUser');//TO DELETE
       if (localStorage.getItem('currentUser') != null) 
-        this.rootPage = LoginPage;
+        this.rootPage = HomePage;
       else
         this.rootPage = LoginPage;
 

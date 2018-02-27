@@ -25,8 +25,7 @@
     },
     "AUTHENTICATION": {
         "HEADER": "אימות",
-        "FIRST_NAME": "שם פרטי",
-        "LAST_NAME": "שם משפחה",
+        "CORPORATION_NAME":"שם העסק",        
         "IDENTITY": "מספר זהות",
         "CORPORATION_NUMBER": "מספר עוסק",
         "BUTTON_TEXT": "המשך"
@@ -61,6 +60,8 @@
     },
     "REGISTER": {
         "HEADER": "רישום",
+        "FIRST_NAME": "שם פרטי",
+        "LAST_NAME": "שם משפחה",
         "AUTHENTICATION_PASSWORD": "אמת את הסיסמא שלך",
         "PASSWORD": "סיסמא",
         "USERNAME": "שם משתמש",
@@ -69,7 +70,14 @@
         "TELEPHONE": "מספר טלפון (לא חובה)",
         "ADDRESS": "כתובת",
         "TEXT_REGISTER": "רישום",
-        "TEXT_EXISTS": "לקוח קיים?"
+        "TEXT_EXISTS": "לקוח קיים?",
+        "PASSWORD1_VALID": "הכנס סיסמא בת 8 תווים לפחות. הסיסמא חייבת לכלול אותיות גדולות וקטנות וספרות",
+        "PASSWORD2_VALID": "הכנס סיסמא בת 8 תווים לפחות. הסיסמא חייבת לכלול אותיות גדולות וקטנות וספרות. ודא שהסיסמא תואמת לזו שהזנת",
+        "USERNAME_VALID": "הכנס שם משתמש בן 25 - 5 תוים",
+        "NAME_VALID":"הכנס שם בן 3-15 תוים",
+        "EMAIL_VALID": "לא תקין",
+        "MOBILE_VALID": "לא תקין",
+        "ADDRESS_VALID": "שדה חובה"
     },
     "PERSONAL_FILE": {
         "HEADER": "תיק אישי",
@@ -102,12 +110,6 @@
         "SAVE": "שמור",
         "FIRST_DIR": "rtl",
         "SECOND_DIR": "ltr",
-        "TEXT_EXISTS": "לקוח קיים?",
-        "PASSWORD1_VALID": "הכנס סיסמא בת 8 תווים לפחות. הסיסמא חייבת לכלול אותיות גדולות וקטנות וספרות",
-        "PASSWORD2_VALID": "הכנס סיסמא בת 8 תווים לפחות. הסיסמא חייבת לכלול אותיות גדולות וקטנות וספרות. ודא שהסיסמא תואמת לזו שהזנת",
-        "USERNAME_VALID": "הכנס שם משתמש בן 25 - 5 תוים",
-        "EMAIL_VALID": "לא תקין",
-        "MOBILE_VALID": "לא תקין",
-        "ADDRESS_VALID": "שדה חובה"
+        "TEXT_EXISTS": "לקוח קיים?"
     }
 }

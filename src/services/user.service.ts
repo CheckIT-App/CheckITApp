@@ -12,14 +12,14 @@ export class UserService {
     constructor(public modalCtrl: ModalController) {
     }
 
-    saveUser(firstName: string, lastName: string, password: string, userName: string, identity: number, type: string, numCorporation: number, mobile: string, telephone: string, email, address: string): Promise<any> {
+    saveUser(firstName: string, lastName: string, password: string, userName: string, identity: number, type: string,corporate_name:string, numCorporation: number, mobile: string, telephone: string, email, address: string): Promise<any> {
         console.log("enter to save")
-        console.log(firstName && lastName && password && userName && IsID.checkIDAsNumber(identity) == null && type && numCorporation && mobile && email && address);
+        console.log(firstName && lastName && password && userName && IsID.checkIDAsNumber(identity) == null && type &&corporate_name&& numCorporation && mobile && email && address);
         console.log(firstName + " " + lastName + " " + password + " " + userName + " " + IsID.checkIDAsNumber(identity) + " " + type + " " + numCorporation + " " + mobile + " " + email + " " + address);
-        if (firstName && lastName && password && userName && IsID.checkIDAsNumber(identity) == null && type && (numCorporation||type=='private') && mobile && email && address) {
+        if (firstName && lastName && password && userName && IsID.checkIDAsNumber(identity) == null && type && (numCorporation || type == 'private') && mobile && email && address) {
             console.log("enter to if");
             var key = firebase.database().ref('users_profiles')
-                .push({ firstName, lastName, display_name: firstName + " " + lastName, userName, password, identity, email, type, numCorporation, mobile, address, telephone, created: Date.now() }).key;
+                .push({ firstName, lastName, display_name: firstName + " " + lastName, userName, password, identity, email, type, numCorporation,corporate_name, mobile, address, telephone, created: Date.now() }).key;
             firebase.database().ref("users_profiles").child(key).child("uid").set(key);
             return Promise.resolve(key);
         }
@@ -43,7 +43,19 @@ export class UserService {
         }
     }
 
-    searchUser(email: string): Promise<any> {
+    isUserExists(name_corporation: string) {
+        if (name_corporation != "") {
+            return Promise.resolve(firebase.database().ref('users_profiles').orderByChild('corporate_name').equalTo(name_corporation).once('value').then((snap) => {
+                let s;
+                snap.forEach(function (childSnap) {
+                    s = childSnap.key;
+                });
+                return s;
+            }));
+        }
+    }
+
+    searchUser(email: string): Promise<any> {//TODO add one more detail to the checking; maybe nameCorporation?
         return Promise.resolve(firebase.database().ref('users_profiles').orderByChild('email').equalTo(email).once('value').then((snap) => {
             let s;
             snap.forEach(function (childSnap) {
