@@ -23,6 +23,7 @@ export class CheckingCustomersPage {
   //#region properties
   checks: Check[];
   deals: Deal[] = [];
+  direct = "ltr";
   notPaidDeals: Deal[] = [];
   notPaidDealsLength: number = 0;
   paidDeals: Deal[] = [];
@@ -49,6 +50,7 @@ export class CheckingCustomersPage {
       this.okText = "ok";
       this.cancelText = "cancel";
       this.searchText = "search";
+      this.direct = "rtl";
     }
   }
   //#endregion
@@ -241,7 +243,7 @@ export class CheckingCustomersPage {
           this.deals = res;
           if (res.length != 0) {
             console.log("r", res);
-            this.title += " " + this.deals[0].firstName;
+            this.title = this.deals[0].firstName;
             this.orderDeals();
           }
           else {

@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content padding>
-    <div dir="rtl">
+    <div>
         <ion-list>
             <ion-item>
                 <ion-label floating>{{"CUSTOMER_TO_CHECK.MESSAGE"|translate}} :</ion-label>
-                <ion-input type="number" dir="ltr" [(ngModel)]="id"></ion-input>
+                <ion-input type="number" dir="{{direct}}" [(ngModel)]="id"></ion-input>
             </ion-item>
         </ion-list>
         <div dir="ltr">

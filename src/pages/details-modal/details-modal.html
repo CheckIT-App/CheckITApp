@@ -1,40 +1,40 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-title>
-            <button ion-button (click)="ok()">אישור</button>
-            <button ion-button (click)="cancel()">בטל</button> פרטים נוספים
+            <button ion-button (click)="ok()">{{"CHECK_MODAL.OK"|translate}}</button>
+            <button ion-button (click)="cancel()">{{"CHECK_MODAL.CANCEL"|translate}}</button> {{"CHECK_MODAL.HEADER"|translate}}
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding dir="rtl">
+<ion-content padding >
     <ion-list>
         <ion-item>
-            <ion-label >מספר צ'ק :</ion-label>
-            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.id"></ion-input>
+            <ion-label >{{"CHECK_MODAL.CHECK_NUMBER"|translate}} :</ion-label>
+            <ion-input type="number" dir="{{direct}}" [(ngModel)]="selectedCheck.id"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label >בנק :</ion-label>
-            <ion-input dir="ltr" [(ngModel)]="selectedCheck.bank"></ion-input>
+            <ion-label >{{"CHECK_MODAL.BANK"|translate}} :</ion-label>
+            <ion-input dir="{{direct}}" [(ngModel)]="selectedCheck.bank"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label >סניף :</ion-label>
-            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.branch"></ion-input>
+            <ion-label >{{"CHECK_MODAL.BRANCH"|translate}} :</ion-label>
+            <ion-input type="number" dir="{{direct}}" [(ngModel)]="selectedCheck.branch"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label >{{sum}} :</ion-label>
-            <ion-input type="number" dir="ltr" [(ngModel)]="selectedCheck.sum"></ion-input>
+            <ion-label >{{"CHECK_MODAL.SUM"|translate}} :</ion-label>
+            <ion-input type="number" dir="{{direct}}" [(ngModel)]="selectedCheck.sum"></ion-input>
         </ion-item>
         <ion-item >
-            <ion-label>תאריך פרעון</ion-label>
+            <ion-label>{{"CHECK_MODAL.DUE_DATE"|translate}}</ion-label>
             <ion-datetime  displayFormat="DD/MM/YYYY" min="2016" max="2040" pickerFormat="DD/MM/YYYY" [(ngModel)]="selectedCheck.dueDate"></ion-datetime>
         </ion-item>
         <ion-item *ngIf="!checkReturned">
-            <ion-label>נפדה בתאריך</ion-label>
+            <ion-label>{{"CHECK_MODAL.EXPIRED_ON"|translate}}</ion-label>
             <ion-datetime  displayFormat="DD/MM/YYYY" min="2016" max="2018" pickerFormat="DD/MM/YYYY" [(ngModel)]="selectedCheck.expiredOn"></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label>צ'ק חזר</ion-label>
+            <ion-label>{{"CHECK_MODAL.CHECK_RETURNED"|translate}}</ion-label>
             <ion-checkbox color="secondColor" checked="{{checkReturned}}" [(ngModel)]="checkReturned"></ion-checkbox>
         </ion-item>
     </ion-list>

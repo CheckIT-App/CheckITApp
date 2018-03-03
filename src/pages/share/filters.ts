@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform} from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 import { checkStatus } from "./enums";
 
 
@@ -6,15 +6,29 @@ import { checkStatus } from "./enums";
 
 export class FilterStatusPipe implements PipeTransform {
 
-    transform (statusNumber: checkStatus, searchTerm: string = ""): any  {
-       
-        if (statusNumber == checkStatus.paid)
-            return "שולם";
-        else
-            if (statusNumber == checkStatus.returened)
-                return "חזר" ;
-            else
-                return "לא שולם";
+    transform(statusNumber: checkStatus, searchTerm: string = ""): any {
+        if (localStorage.getItem('language') == 'en') {
 
-       }
+            if (statusNumber == checkStatus.paid)
+                return "paid";
+            else
+                if (statusNumber == checkStatus.returened)
+                    return "returned";
+                else
+                    return "not paid";
+
+        }
+        else {
+            if (localStorage.getItem('language') == 'en') {
+
+                if (statusNumber == checkStatus.paid)
+                    return "שולם";
+                else
+                    if (statusNumber == checkStatus.returened)
+                        return "חזר";
+                    else
+                        return "לא שולם";
+            }
+        }
+    }
 }

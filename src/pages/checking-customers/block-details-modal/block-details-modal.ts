@@ -14,6 +14,7 @@ export class BlockDetails implements OnInit {
 //members
 
   checkReturned: boolean;
+  direct = "ltr";
   sum = sum;
   selectedCheck: Check;
   selectedCheckCopy: Check;
@@ -23,6 +24,10 @@ export class BlockDetails implements OnInit {
   constructor(params: NavParams, public viewCtrl: ViewController) {
 
     this.selectedCheck = params.get('selectedCheck');
+    if (localStorage.getItem('language') == 'en') {
+      document.dir = 'ltr';
+        this.direct = "rtl"
+      }
 
   }
 
