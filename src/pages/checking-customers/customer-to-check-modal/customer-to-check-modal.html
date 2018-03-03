@@ -1,22 +1,22 @@
 <ion-header>
     <ion-navbar color="primary">
         <ion-title>
-            Customer
+                {{"CUSTOMER_TO_CHECK.HEADER"|translate}}
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <div dir="rtl">
+    <div>
         <ion-list>
             <ion-item>
-                <ion-label floating>הכנס ת.ז. או מספר דרכון :</ion-label>
-                <ion-input type="number" dir="ltr" [(ngModel)]="id"></ion-input>
+                <ion-label floating>{{"CUSTOMER_TO_CHECK.MESSAGE"|translate}} :</ion-label>
+                <ion-input type="number" dir="{{direct}}" [(ngModel)]="id"></ion-input>
             </ion-item>
         </ion-list>
         <div dir="ltr">
-            <button ion-button block color="secondColor" (click)="ok()">אישור</button>
-            <button ion-button block color="secondColor" (click)="dismiss()">סגור</button>
+            <button ion-button block color="secondColor" (click)="ok()">{{"CUSTOMER_TO_CHECK.OK"|translate}}</button>
+            <button ion-button block color="secondColor" (click)="dismiss()">{{"CUSTOMER_TO_CHECK.CLOSE"|translate}}</button>
         </div>
     </div>
 </ion-content>

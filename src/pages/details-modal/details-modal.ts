@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 import { Check } from '../../models/checks';
 import { sum } from '../share/consts';
@@ -11,23 +11,26 @@ import { status, checkStatus } from '../share/enums';
 })
 export class Details implements OnInit {
 
-//members
+  //members
 
   checkReturned: boolean;
   sum = sum;
   selectedCheck: Check;
   selectedCheckCopy: Check;
+  direct = "ltr";
 
-//constructor
+  //constructor
 
   constructor(params: NavParams, public viewCtrl: ViewController) {
-    if(localStorage.getItem('language')=='en')
-      document.dir='ltr';
+    if (localStorage.getItem('language') == 'en') {
+    document.dir = 'ltr';
+      this.direct = "rtl"
+    }
     this.selectedCheck = params.get('selectedCheck');
 
   }
 
-//functions
+  //functions
 
   cancel() {
 
@@ -71,7 +74,7 @@ export class Details implements OnInit {
     if (this.selectedCheck != this.selectedCheckCopy) {
       this.selectedCheck.updateStatus = status.update;
     }
-   
+
     this.viewCtrl.dismiss();
   }
 

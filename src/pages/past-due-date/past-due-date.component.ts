@@ -22,14 +22,23 @@ export class PastDueDatePage implements OnInit {
   orderProp = "";
   selectedCheck: Check;
   selectedDeal: Deal;
-  title = "צ'קים שעבר זמן פירעונם";
   today = Date.now();
-  l: any = localStorage.getItem('language');
+  status = "paid";
+  title = "";
+  okText = "אישור";
+  cancelText = "בטל";
+  searchText = "חפש";
+  direct = "ltr";
   //constructor
 
   constructor(public dealService: DealService, public modalCtrl: ModalController) {
-    if (localStorage.getItem('language') == 'en')
-      document.dir = 'ltr';
+    if (localStorage.getItem('language') == 'en') {
+    document.dir = 'ltr';
+      this.okText = "ok";
+      this.cancelText = "cancel";
+      this.searchText = "search";
+      this.direct = "rtl";
+    }
   }
 
   //functions

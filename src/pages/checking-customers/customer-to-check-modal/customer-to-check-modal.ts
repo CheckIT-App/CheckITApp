@@ -18,6 +18,7 @@ export class CustomerToCheck {
     id: number;
     message: string = "";
     type: idOrPassport;
+    direct = "ltr";
     //#endregion
 
     //#region constructor
@@ -26,6 +27,10 @@ export class CustomerToCheck {
         if (params.get('alerting') == true) {
             this.presentAlert();
         }
+        if (localStorage.getItem('language') == 'en') {
+            document.dir = 'ltr';
+              this.direct = "rtl"
+            }
         
     }
     //#endregion

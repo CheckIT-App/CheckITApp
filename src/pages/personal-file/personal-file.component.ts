@@ -23,16 +23,25 @@ export class PersonalFilePage implements OnInit {
   orderProp = "";
   selectedCheck: Check;
   selectedDeal: Deal;
-  title = "התיק האישי שלי";
-  l:any=localStorage.getItem('language');
+  status = "paid";
+  title = "";
+  okText = "אישור";
+  cancelText = "בטל";
+  searchText = "חפש";
+  direct = "ltr";
   //#endregion
   //constructor
 
-//constructor
+  //constructor
 
   constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
-    if(localStorage.getItem('language')=='en')
-      document.dir='ltr';
+    if (localStorage.getItem('language') == 'en') {
+    document.dir = 'ltr';
+      this.okText = "ok";
+      this.cancelText = "cancel";
+      this.searchText = "search";
+      this.direct = "rtl";
+    }
   }
 
   //functions

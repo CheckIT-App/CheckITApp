@@ -23,6 +23,7 @@ export class CheckingCustomersPage {
   //#region properties
   checks: Check[];
   deals: Deal[] = [];
+  direct = "ltr";
   notPaidDeals: Deal[] = [];
   notPaidDealsLength: number = 0;
   paidDeals: Deal[] = [];
@@ -34,14 +35,23 @@ export class CheckingCustomersPage {
   selectedCheckStatus: checkStatus;
   selectedDeal: Deal;
   selectedOption: openOption;
-  title = " עסקאות לקוח";
+  status="paid";
+  title = "";
+  okText = "אישור";
+  cancelText = "בטל";
+  searchText = "חפש";
   l: any = localStorage.getItem('language');
   //#endregion 
 
   //#region constructor
   constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController, public alertCtrl: AlertController) {
-    if (localStorage.getItem('language') == 'en')
+    if (localStorage.getItem('language') == 'en') {
       document.dir = 'ltr';
+      this.okText = "ok";
+      this.cancelText = "cancel";
+      this.searchText = "search";
+      this.direct = "rtl";
+    }
   }
   //#endregion
 
@@ -190,7 +200,7 @@ export class CheckingCustomersPage {
 
     this.pastDueDateDeals.map(d => {
       d.checks = d.checks.filter(c => {
-        return c.status != checkStatus.paid && c.isDateOf == true;
+        return c.status == checkStatus.returened;
       });
     });
     this.pastDueDateDeals = this.pastDueDateDeals.filter(d => {
@@ -233,7 +243,7 @@ export class CheckingCustomersPage {
           this.deals = res;
           if (res.length != 0) {
             console.log("r", res);
-            this.title += " " + this.deals[0].firstName;
+            this.title = this.deals[0].firstName;
             this.orderDeals();
           }
           else {
@@ -242,7 +252,7 @@ export class CheckingCustomersPage {
         }
         );
       }
-      else{
+      else {
         this.navCtrl.pop();
       }
     }
