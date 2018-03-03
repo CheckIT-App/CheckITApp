@@ -71,10 +71,10 @@
       </ion-item>
       <div *ngIf="!mobile_valid">{{"REGISTER.MOBILE_VALID"|translate}}</div>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label floating>{{"REGISTER.TELEPHONE"|translate}}</ion-label>
         <ion-input formControlName="telephone" type="tel"></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label floating>{{"REGISTER.ADDRESS"|translate}}</ion-label>
@@ -89,8 +89,7 @@
 
     </ion-list>
     <div>
-      <button ion-button color="secondColor" type="submit" block>{{"REGISTER.TEXT_REGISTER"|translate}}</button>
-      <button ion-button color="mainColor" block>{{"REGISTER.TEXT_EXISTS"|translate}}</button>
+      <button ion-button color="primary" type="submit" block>{{"REGISTER.TEXT_REGISTER"|translate}}</button>
     </div>
   </form>
 

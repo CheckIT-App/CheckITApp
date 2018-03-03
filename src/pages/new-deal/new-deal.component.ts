@@ -72,11 +72,12 @@ export class NewDealPage {
       if (this.addDealForm.value.ID != "" && this.addDealForm.value.passport != "" && this.addDealForm.value.ID != null && this.addDealForm.value.passport != null) {//
         if (IsID.checkIDAsNumber(this.addDealForm.value.ID) == null) {
           this.newDealService.isCustomerExists(parseInt(this.addDealForm.value.ID), "ID").then(key => {
+            console.log(key);
             if (key != undefined) {//if the ID exists
               if (IsID.checkPassportAsNumber(this.addDealForm.value.passport) == null) {
                 this.newDealService.isCustomerExists(parseInt(this.addDealForm.value.passport), "passport").then(rkey => {
                   this.newDealService.updateCustomerWithID(key, this.addDealForm.value.passport, "passport").then(succeed => {//update the profile with the passport
-                    if (succeed == true && rkey != undefined) {//if the passport exists - delete from the DB
+                    if (succeed == true && rkey != undefined && rkey != key) {//if the passport exists - delete from the DB
                       this.newDealService.removeCustomer(rkey);
                     }
                   });
@@ -84,8 +85,11 @@ export class NewDealPage {
               }
             }
             else {//if ID doesn't exist
+              console.log(this.addDealForm.value.passport + "***");
               this.newDealService.isCustomerExists(this.addDealForm.value.passport, "passport").then(pkey => {
-                this.newDealService.updateCustomerWithID(pkey, this.addDealForm.value.ID, "ID");//update the profile of passport with ID
+                console.log(pkey);
+                if (pkey != undefined)
+                  this.newDealService.updateCustomerWithID(pkey, this.addDealForm.value.ID, "ID").then(h => { console.log(h) });//update the profile of passport with ID
               })
             }
           });

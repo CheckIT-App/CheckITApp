@@ -8,8 +8,22 @@
 
 <ion-content padding>
   <exit></exit>
-  <button ion-button color="secondColor" block (click)="navigateNewDeal()">{{"HOME.BUTTON_NEW_DEAL"|translate}}</button>
-  <button ion-button color="secondColor" block (click)="navigateCheckCustomers()">{{"HOME.BUTTON_CHECKING_CUSTOMERS"|translate}}</button>
-  <button ion-button color="secondColor" block (click)="navigatePersonalFile()">{{"HOME.BUTTON_PERSONAL_FILE"|translate}}</button>
-  <button ion-button color="secondColor" block (click)="navigatePastDueDate()">Past Due Date</button>
+  <ion-grid style="margin-top:30%">
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button color="minorColor" block (click)="navigateNewDeal()">{{"HOME.BUTTON_NEW_DEAL"|translate}}</button>
+      </ion-col>
+    <!-- </ion-row>
+    <ion-row> -->
+      <ion-col col-12>
+        <button ion-button color="minorColor" block (click)="navigateCheckCustomers()">{{"HOME.BUTTON_CHECKING_CUSTOMERS"|translate}}</button>
+      </ion-col>
+      <ion-col col-12>
+        <button ion-button color="minorColor" block (click)="navigatePersonalFile()">{{"HOME.BUTTON_PERSONAL_FILE"|translate}}</button>
+      </ion-col>
+      <ion-col col-12>
+        <button ion-button color="minorColor" block (click)="navigatePastDueDate()">Past Due Date</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -55,7 +55,8 @@
         "BANK": "bank",
         "BRANCH": "branch",
         "DUE_DATE": "due date",
-        "BUTTON_TEXT": "ADD"
+        "BUTTON_TEXT": "ADD",
+        "BUTTON_FINISH":"Finish"
     },
     "PERSONAL_FILE": {
         "HEADER": "personal file",
