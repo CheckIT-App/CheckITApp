@@ -25,8 +25,7 @@
     },
     "AUTHENTICATION": {
         "HEADER": "Authentication",
-        "FIRST_NAME": "First name",
-        "LAST_NAME": "Last name",
+        "CORPORATION_NAME":"name of your corporation",
         "IDENTITY": "Identity",
         "CORPORATION_NUMBER": "Number of corporation",
         "BUTTON_TEXT": "Next"
@@ -97,6 +96,8 @@
     },
     "REGISTER":{
         "HEADER":"Register",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
         "AUTHENTICATION_PASSWORD":"authenicate your password",
         "PASSWORD":"password",
         "USERNAME":"username",
@@ -109,6 +110,7 @@
         "PASSWORD1_VALID":"enter password 8 chars (at least), with digits and letters in upper and lower case",
         "PASSWORD2_VALID":"enter password 8 chars (at least), with digits and letters in upper and lower case. make sure it's same to the above password",
         "USERNAME_VALID":"enter username 5 - 25 chars",
+        "NAME_VALID":"enter username 3 - 15 chars",        
         "EMAIL_VALID":"not valid",
         "MOBILE_VALID":"not valid",
         "ADDRESS_VALID":"required"

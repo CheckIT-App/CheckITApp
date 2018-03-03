@@ -100,8 +100,8 @@
             <div *ngFor="let Deal of pastDueDateDeals ">
               <ion-row>
                 <ion-item-divider color="primary" (click)="onChangeDeal(Deal)">
-                    <ion-label  dir="ltr"> {{"CHECKING_CUSTOMERS.DEAL_DATE"|translate}}: {{Deal.created}} </ion-label>
-                  </ion-item-divider>
+
+                </ion-item-divider>
               </ion-row>
               <div *ngFor="let check of Deal.checks" (click)="onChangeCheck(check)">
                 <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
