@@ -109,5 +109,40 @@
         "EMAIL_VALID": "לא תקין",
         "MOBILE_VALID": "לא תקין",
         "ADDRESS_VALID": "שדה חובה"
+    },
+    "CHECKING_CUSTOMERS":{
+        "HEADER": "בדיקת לקוח",
+        "SORT_BY": "מיין לפי",
+        "OK": "אישור",
+        "CANCEL": "בטל",
+        "NAME": "שם",
+        "DATE": "תאריך",
+        "SEARCH": "חפש",
+        "PAID_CHECKS":"שולמו",
+        "NOT_PAID_CHECKS":"לא שולמו",
+        "RETURNED_CHECKS":"חזרו",
+        "DEAL_DATE":"תאריך עסקה",
+        "SUM":"סכום",
+        "DUE_DATE":"תאריך פרעון"
+    },
+    "CUSTOMER_TO_CHECK":{
+        "HEADER": "בדוק לקוח",
+        "MESSAGE":"הכנס ת.ז. או מספר דרכון",
+        "OK":"אישור",
+        "CLOSE":"סגור"
+
+    },
+    "CHECK_MODAL":{
+        "HEADER":"פרטי צ'ק",
+        "CANCEL":"בטל",
+        "OK":"אישור",
+        "CHECK_NUMBER":"מספר צ'ק",
+        "BANK":"בנק",
+        "BRANCH":"סניף",
+        "SUM":"סכום",
+        "DUE_DATE":"תאריך פרעון",
+        "EXPIRED_ON":"נפדה בתאריך",
+        "CHECK_RETURNED":"צ'ק חזר"
+        
     }
 }

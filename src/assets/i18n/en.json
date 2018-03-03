@@ -112,5 +112,40 @@
         "EMAIL_VALID":"not valid",
         "MOBILE_VALID":"not valid",
         "ADDRESS_VALID":"required"
+    },
+    "CHECKING_CUSTOMERS":{
+        "HEADER": "check customer",
+        "SORT_BY":"sort by",
+        "OK":"ok",
+        "CANCEL":"cancel",
+        "NAME":"name",
+        "DATE":"date",
+        "SEARCH":"search",
+        "PAID_CHECKS":"paid",
+        "NOT_PAID_CHECKS":"not paid",
+        "RETURNED_CHECKS":"returned",
+        "DEAL_DATE":"deal date",
+        "SUM":"sum",
+        "DUE_DATE":"due date"
+    },
+    "CUSTOMER_TO_CHECK":{
+        "HEADER": "check customer",
+        "MESSAGE":"enter id or passport",
+        "OK":"ok",
+        "CLOSE":"close"
+
+    },
+    "CHECK_MODAL":{
+        "HEADER":"Check Details",
+        "CANCEL":"cancel",
+        "OK":"ok",
+        "CHECK_NUMBER":"check number",
+        "BANK":"bank",
+        "BRANCH":"branch",
+        "SUM":"sum",
+        "DUE_DATE":"due date",
+        "EXPIRED_ON":"expired on",
+        "CHECK_RETURNED":"check returned"
+        
     }
 }
