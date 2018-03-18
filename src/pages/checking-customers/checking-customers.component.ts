@@ -170,9 +170,7 @@ export class CheckingCustomersPage {
 
   orderDeals() {//order the deals to thier list
     this.paidDeals = this.deals.map(x => Object.assign({}, x));
-    this.notPaidDeals = this.deals.map(x => Object.assign({}, x));
-    this.pastDueDateDeals = this.deals.map(x => Object.assign({}, x));
-
+    
     this.paidDeals.map(d => {
       d.checks = d.checks.filter(c => {
         return c.status == checkStatus.paid;
@@ -185,12 +183,14 @@ export class CheckingCustomersPage {
     this.paidDeals.forEach(d => {
       this.paidDealsLength += d.checks.length;
     });
-
+    
+    this.notPaidDeals = this.deals.map(x => Object.assign({}, x));
     this.notPaidDeals.map(d => {
       d.checks = d.checks.filter(c => {
         return c.status != checkStatus.paid && c.isDateOf != true;
       });
     });
+
     this.notPaidDeals = this.notPaidDeals.filter(d => {
       return d.checks.length > 0;
     });
@@ -198,6 +198,7 @@ export class CheckingCustomersPage {
       this.notPaidDealsLength += d.checks.length;
     });
 
+    this.pastDueDateDeals = this.deals.map(x => Object.assign({}, x));
     this.pastDueDateDeals.map(d => {
       d.checks = d.checks.filter(c => {
         return c.status == checkStatus.returened;
@@ -242,7 +243,6 @@ export class CheckingCustomersPage {
         this.dealService.getDealsForCustomer(parseInt(data.id), data.type).then(res => {
           this.deals = res;
           if (res.length != 0) {
-            console.log("r", res);
             this.title = this.deals[0].firstName;
             this.orderDeals();
           }

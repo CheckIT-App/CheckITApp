@@ -7,6 +7,7 @@ import { FilterStatusPipe } from '../share/filters';
 import { Check } from '../../models/checks';
 import { Deal } from '../../models/deals';
 import { DealService } from '../../services/deals.service';
+import firebase from 'firebase';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class PersonalFilePage implements OnInit {
   //#region members
 
   checks: Check[];
+  checkRef: any;
   deals: Deal[] = [];
   orderProp = "";
   selectedCheck: Check;
@@ -29,6 +31,7 @@ export class PersonalFilePage implements OnInit {
   cancelText = "בטל";
   searchText = "חפש";
   direct = "ltr";
+  yesterday:Date;
   //#endregion
   //constructor
 
@@ -36,7 +39,7 @@ export class PersonalFilePage implements OnInit {
 
   constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController) {
     if (localStorage.getItem('language') == 'en') {
-    document.dir = 'ltr';
+      document.dir = 'ltr';
       this.okText = "ok";
       this.cancelText = "cancel";
       this.searchText = "search";
@@ -53,10 +56,19 @@ export class PersonalFilePage implements OnInit {
       self.deals = res;
     });
 
+    // self.dealService.trial().then(t=>{
+    //   console.log(t);
+    // })
+
   }
 
   getItems(ev: any) {//search Deals 
+    this.yesterday= new Date();
+    this.yesterday.setDate(this.yesterday.getDate() - 1);
+    
+    //this.yesterday= new Date(this.yesterday).toDateString;
 
+    console.log((this.yesterday.getFullYear().toString()+"-"+this.yesterday.getMonth().toString()+"-"+this.yesterday.getDate().toString()).toString());
     this.deals = this.dealService.getDealsFromService();
     let val = ev.target.value;
     if (val && val.trim() != '') {
@@ -70,6 +82,25 @@ export class PersonalFilePage implements OnInit {
 
   ngOnInit(): void {
     this.getDeals();
+<<<<<<< HEAD
+=======
+
+    // getMetadata().then(img=>{
+
+
+    // });
+    // Create reference to the file whose metadata we want to retrieve
+
+    // Get metadata properties
+    // forestRef.getMetadata { metadata, error in
+    //   if let error = error {
+    //     // Uh-oh, an error occurred!
+    //   } else {
+    //     // Metadata now contains the metadata for 'images/forest.jpg'
+    //   }
+    // }
+
+>>>>>>> 435ffaeba6a88364159b10fc8a25b70c31fe1440
   }
 
   presentModal() {

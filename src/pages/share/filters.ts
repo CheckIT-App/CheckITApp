@@ -3,10 +3,11 @@ import { checkStatus } from "./enums";
 
 
 @Pipe({ name: 'filterStatus' })
-
+//filter by enum checkStatus
 export class FilterStatusPipe implements PipeTransform {
 
     transform(statusNumber: checkStatus, searchTerm: string = ""): any {
+         //if the language is english
         if (localStorage.getItem('language') == 'en') {
 
             if (statusNumber == checkStatus.paid)
@@ -19,7 +20,8 @@ export class FilterStatusPipe implements PipeTransform {
 
         }
         else {
-            if (localStorage.getItem('language') == 'en') {
+            //if the language is hebrow
+            if (localStorage.getItem('language') == 'he') {
 
                 if (statusNumber == checkStatus.paid)
                     return "שולם";

@@ -17,7 +17,7 @@ export class DealService {
     //functions
 
     getDeals(): Promise<Deal[]> {
-        console.log("j");
+
         if (!this.deals) {
             this.deals = [];
             return this.getDealsfromData();
@@ -31,47 +31,63 @@ export class DealService {
         let self = this;
 
         try {
-            let userDeals = firebase.database().ref("user_deals/" + localStorage.getItem('currentUser')).once("value");/*localStorage.getItem('currentUser')*/
-            let checks = firebase.database().ref("checks")/*.startAt('filterByUserID') //.endAt('filterByUserID')*/.once("value");//TODO: Filter by userID
-            return Promise.all([userDeals, checks]).then((res: any[]) => {
-                let deals = res[0];
-                let checks = res[1];
-                console.log(deals, checks);
-                deals.forEach(function (deal) {
-                    let newDeal = {
-                        checks: [],
-                        created: new Date(deal.child("created").val()).toLocaleDateString(),
-                        customerUid: deal.child("customer_uid").val(),
-                        dealKey: deal.key,
-                        firstName: deal.child("customer_name").val(),//TODO: Add to user_deals table
-                        status: deal.child("status").val(),
-                    }
-                    deal.child("checks").forEach(function (checkId) {
-                        let check = checks.val()[checkId.val()];
-                        let newCheck = {
-                            bank: check.bank,
-                            branch: check.branch,
-                            checkKey: checkId.val(),
-                            dealKey: check.deal_key,
-                            dueDate: check.due_date,
-                            expiredOn: check.expired_on,
-                            id: check.id,
-                            isDateOf: check.is_dat_of,
-                            status: check.status,
-                            sum: check.sum,
-                            updateStatus: status.notUpdate,
-                        };
-                        if (new Date(newCheck.dueDate).getTime() < Date.now() && !newCheck.isDateOf) {
-                            newCheck.isDateOf = true;
-                            newCheck.updateStatus = status.update;
+            //get data from firebase
+            let userDeals = firebase.database()
+                .ref("user_deals/" + localStorage.getItem('currentUser'))
+                .once("value");
+            let checks = firebase.database()
+                .ref("checks")
+                .once("value");
+            //wait untill all the data comes
+            return Promise.all([userDeals, checks])
+                .then((res: any[]) => {
+                    let deals = res[0];
+                    let checks = res[1];
+                    deals.forEach(function (deal) {
+                        //put data to models
+                        let newDeal = {
+                            checks: [],
+                            created: new Date(deal.child("created").val())
+                                .toLocaleDateString(),
+                            customerUid: deal.child("customer_uid").val(),
+                            dealKey: deal.key,
+                            firstName: deal.child("customer_name").val(),
+                            status: deal.child("status").val(),
                         }
-                        newDeal.checks.push(newCheck);
-                        console.log(newDeal);
-                    })
-                    self.deals.push(newDeal);
+                        deal.child("checks")
+                            .forEach(function (checkId) {
+                                let check = checks.val()[checkId.val()];
+                                let newCheck = {
+                                    bank: check.bank,
+                                    branch: check.branch,
+                                    checkKey: checkId.val(),
+                                    dealKey: check.deal_key,
+                                    dueDate: check.due_date,
+                                    expiredOn: check.expired_on,
+                                    id: check.id,
+                                    isDateOf: check.is_dat_of,
+                                    status: check.status,
+                                    sum: check.sum,
+                                    updateStatus: status.notUpdate,
+                                    imageUrl: check.imagename,
+                                };
+                                //check if there are checks that the due date past
+                                if (new Date(newCheck.dueDate).getTime() <
+                                    Date.now() && !newCheck.isDateOf) {
+                                    newCheck.isDateOf = true;
+                                    newCheck.updateStatus = status.update;
+                                }
+                                console.log(1, newCheck.dueDate);
+                                console.log(2, new Date(newCheck.dueDate));
+                                //push the check to the deal list
+                                newDeal.checks.push(newCheck);
+                            });
+                        //push the checks to the user deals list
+                        self.deals.push(newDeal);
+                    });
+                    //return the user deals
+                    return self.deals;
                 });
-                return self.deals;
-            });
         }
         catch (e) {
             throw e;
@@ -113,10 +129,10 @@ export class DealService {
                 'sum': sum,
                 'status': dealStatus,
             });
-            firebase.database().ref('user_deals/' + localStorage.getItem('currentUser')+"/"+ d.dealKey).update({
+            firebase.database().ref('user_deals/' + localStorage.getItem('currentUser') + "/" + d.dealKey).update({
                 'status': dealStatus,
             });
-            firebase.database().ref('user_deals/' + d.customerUid+"/"+d.dealKey).update({//TODO:user
+            firebase.database().ref('customer_deals/' + d.customerUid + "/" + d.dealKey).update({//TODO:user
                 'status': dealStatus,
             });
         });
@@ -130,9 +146,10 @@ export class DealService {
                     .equalTo(parseInt(ID.toString())).once('value');
                 return Promise.all([customer]).then((snap) => {
                     let s;
+                    console.log("s", snap);
                     snap[0].forEach(function (childSnap) {
                         s = childSnap.key;
-                        console.log(s);
+                        console.log("sc", snap[0]);
                     })
                     return self.getCustomerDeals(s);
                 })
@@ -141,17 +158,16 @@ export class DealService {
 
             if (kind == idOrPassport.passport && ID) {
                 let customer = firebase.database().ref('customers_profiles').orderByChild('passport')
-                    .equalTo(ID.toString()).once('value');
-                return Promise.all([customer]).then((snap) => {
-                    console.log(snap[0]);
-                    let s = "";
-                    snap[0].forEach(function (childSnap) {
-                        s = childSnap.key;
+                    .equalTo(ID.toString()).once('value').then((snap) => {
+                        console.log(snap[0]);
+                        let s = "";
+                        snap[0].forEach(function (childSnap) {
+                            s = childSnap.key;
+                            console.log(s);
+                        })
                         console.log(s);
+                        return self.getCustomerDeals(s);
                     })
-                    console.log(s);
-                    return self.getCustomerDeals(s);
-                })
             }
         }
 
@@ -170,7 +186,7 @@ export class DealService {
                 let deals = res[0];
                 let checks = res[1];
                 deals.forEach(function (deal) {
-                    console.log("d",deal.child("checks").val());
+                    console.log("d", deal.child("checks").val());
                     if (deal.child("checks").val()) {
                         let newDeal = {
                             checks: [],
@@ -220,5 +236,32 @@ export class DealService {
     getCustomerDealsFromService(): Deal[] {
         return this.customerDeals;
     }
+    getImageFromStorage(imageUrl): Promise<any> {
+        try {
+            var url = firebase.storage().ref().child("images/" + imageUrl + ".jpg").getDownloadURL()
+            return url;
+        }
+        catch (e) {
+            console.log("no");
+            return Promise.resolve(0);
+        }
+    }
+
+     trial() {
+    //     var token = 123;
+    //     var checks = firebase.database()
+    //         .ref("checks").orderByChild("user_uid").equalTo(localStorage.getItem('currentUser')).once('value');
+    //     return Promise.all([checks]).then((snap) => {
+    //         snap[0].forEach(c => {
+                
+    //             firebase.database().ref("checks/" + c.key)
+    //                 .update({
+    //                     'token': token,
+    //                 });
+
+    //             //backend.registerToken(token);
+    //         });
+    //     });
+   }
 
 }

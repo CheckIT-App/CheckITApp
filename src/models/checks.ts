@@ -12,5 +12,6 @@ export class Check {
     status: checkStatus; 
     sum: number;
     updateStatus: status; 
-    
+    imageUrl:string;
+     
 }
