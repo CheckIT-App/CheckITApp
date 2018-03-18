@@ -34,9 +34,12 @@
         "BUTTON_TEXT": "צא"
     },
     "FORGOT_PASSWORD": {
-        "HEADER": "שכחתי סיסמא",
-        "INPUT_TEXT": "כתובת מייל",
-        "BUTTON_TEXT": "אישור"
+        "HEADER_F": "שכחתי סיסמא",
+        "HEADER_A": "שלח הודעה למנהל המערכת",
+        "INPUT_TEXT": "הכנס כתובת מייל",
+        "NAME_TEXT": "הכנס שם",
+        "CORNAME_TEXT":"הכנס שם עסק",
+        "BUTTON_TEXT": "שלח"
     },
     "ADD_CUSTOMER": {
         "HEADER": "לקוח חדש",
@@ -151,6 +154,18 @@
         "DUE_DATE":"תאריך פרעון",
         "EXPIRED_ON":"נפדה בתאריך",
         "CHECK_RETURNED":"צ'ק חזר"
+        
+    },
+    "NEW_PASSWORD":{
+        "HEADER":"עדכן סיסמא",
+        "PASSWORD":"הזן סיסמא חדשה",
+        "PASSWORD_AUTH":"אמת את הסיסמא שלך",
+        "BUTTON_TEXT":"עדכן"
+    },
+    "UPDATE_USER":{
+        "HEADER":"עדכון פרטים",
+        "BUTTON_TEXT":"עדכן",
+        "LANGUAGE":"שפה"
         
     }
 }

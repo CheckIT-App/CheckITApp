@@ -23,7 +23,7 @@ export class Details implements OnInit {
 
   constructor(params: NavParams, public viewCtrl: ViewController) {
     if (localStorage.getItem('language') == 'en') {
-    document.dir = 'ltr';
+      document.dir = 'ltr';
       this.direct = "rtl"
     }
     this.selectedCheck = params.get('selectedCheck');

@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { FCM } from '@ionic-native/fcm';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,9 +23,11 @@ import { PersonalFilePage } from '../pages/personal-file/personal-file.component
 import { Details } from '../pages/details-modal/details-modal';
 import { NewDealPage } from '../pages/new-deal/new-deal.component';
 import { NewCustomerModal } from '../pages/new-customer/new-customer';
+import { NewPasswordModal } from '../pages/new-password/new-password.component';
 import { NewDealService } from '../services/new-deal.service';
 import { RegisterPage } from '../pages/register/register.component';
 import { StartPage } from '../pages/start/start.component';
+import { UpdateUserPage } from '../pages/update-user/update-user.component';
 import { UserService } from '../services/user.service';
 import { PastDueDatePage } from '../pages/past-due-date/past-due-date.component';
 
@@ -53,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginPage,
     NewDealPage,
     NewCustomerModal,
+    NewPasswordModal,    
     PersonalFilePage,
     RegisterPage,
     StartPage,
@@ -60,7 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BlockDetails,
     FilterStatusPipe,
     PastDueDatePage,
-    CustomerToCheck
+    CustomerToCheck,
+    UpdateUserPage
   ],
   imports: [
     BrowserModule,
@@ -84,18 +89,22 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginPage,
     NewDealPage,
     NewCustomerModal,
+    NewPasswordModal,
     PersonalFilePage,
     RegisterPage,
     StartPage,
     Details,
     BlockDetails,
     PastDueDatePage,
-    CustomerToCheck
+    CustomerToCheck,
+    UpdateUserPage
   ],
   providers: [
     Camera,
+    EmailComposer,
     FCM,
     FCMService,
+    ForgotPasswordModal,
     NewDealService,
     StatusBar,
     SplashScreen,

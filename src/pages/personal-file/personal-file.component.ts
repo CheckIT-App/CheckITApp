@@ -66,31 +66,23 @@ export class PersonalFilePage implements OnInit {
     }
     if (this.orderProp != "")
       this.deals = this.sort();
-
   }
 
   ngOnInit(): void {
-
     this.getDeals();
-
   }
 
   presentModal() {
-
     let modal = this.modalCtrl.create(Details, { selectedCheck: this.selectedCheck });
     modal.present();
-
   }
 
   save() {
-
     this.dealService.save(this.deals);
     this.selectedDeal = null;
-
   }
 
   sort() {//sort the deals
-
     if (this.deals && this.orderProp) {
       return this.deals
         .slice(0) // Make a copy

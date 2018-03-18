@@ -5,23 +5,19 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AuthenticationPage } from '../authentication/authentication.component';
 import { MyApp } from '../../app/app.component';
-import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'page-start',
   templateUrl: 'start.html',
-  providers: [RegisterService]
 })
 
 export class StartPage {
   lang;
   type;
-  regSer: RegisterService;
 
   constructor( public navCtrl: NavController, public translate: TranslateService) {
     this.type = 'private';
     this.lang = 'he';
-     // var x=require('../exit/exit.html');
   }
 
   changeLang() {
