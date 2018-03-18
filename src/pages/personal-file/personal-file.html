@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      {{"PERSONAL_FILE.HEADER"|translate}}     
+      {{"PERSONAL_FILE.HEADER"|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div >
+  <div>
 
     <ion-grid>
       <ion-row>
@@ -28,26 +28,42 @@
 
     <ion-list>
       <ion-list-header color="secondColor">
+        <!-- from translation source -->
         <div> {{"PERSONAL_FILE.TITEL"|translate}}</div>
       </ion-list-header>
+      <!-- list of the user deals -->
       <div *ngFor="let Deal of deals ">
         <ion-row>
+          <!-- on click change the current deal -->
           <ion-item-divider color="primary" (click)="thisDeal(Deal)">
-            <ion-label>{{"PERSONAL_FILE.NAME"|translate}}: {{Deal.firstName}}</ion-label>
-            <ion-label>{{"PERSONAL_FILE.DEAL_DATE"|translate}}: {{Deal.created}} </ion-label>
+            <ion-label>
+              {{"PERSONAL_FILE.NAME"|translate}}: {{Deal.firstName}}
+            </ion-label>
+            <ion-label>
+              {{"PERSONAL_FILE.DEAL_DATE"|translate}}: {{Deal.created}}
+            </ion-label>
           </ion-item-divider>
         </ion-row>
-        <div *ngFor="let check of Deal.checks" (click)="thisCheck(check)">
+        <!-- list of the checks of the current deal -->
+        <!-- on click send to function to shows model of its details -->
+        <div *ngFor="let check of Deal.checks" 
+        (click)="thisCheck(check)">
+          <!-- show checks just if their deal selected -->
           <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
-            <ion-label > {{"PERSONAL_FILE.SUM"|translate}}: {{check.sum}}</ion-label>
-            <ion-label > {{"PERSONAL_FILE.STATUS"|translate}}: {{check.status|filterStatus:searchTerm}}</ion-label>
+            <ion-label>
+              {{"PERSONAL_FILE.SUM"|translate}}: {{check.sum}}
+            </ion-label>
+            <ion-label>
+              {{"PERSONAL_FILE.STATUS"|translate}}: 
+              {{check.status|filterStatus:searchTerm}}
+            </ion-label>
           </ion-item>
         </div>
       </div>
     </ion-list>
 
     <div dir="{{direct}}">
-      <button ion-button color="mainColor"  (click)="save()">{{"PERSONAL_FILE.SAVE"|translate}}</button>
+      <button ion-button color="mainColor" (click)="save()">{{"PERSONAL_FILE.SAVE"|translate}}</button>
     </div>
   </div>
 </ion-content>

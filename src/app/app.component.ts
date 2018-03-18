@@ -10,14 +10,16 @@ import { LoginPage } from '../pages/login/login.component';
 import { RegisterPage } from '../pages/register/register.component';
 import { StartPage } from '../pages/start/start.component';
 import { FCMService } from '../services/FCMService';
+import { Events } from 'ionic-angular/util/events';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any;
+  newNotification: boolean = false;
 
-  constructor(fcmService: FCMService, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
+  constructor(events: Events, fcmService: FCMService, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     firebase.initializeApp({
       apiKey: "AIzaSyAMKNoiaRQFFmPRttWwaEiYn82_9S24xyY",
       authDomain: "checkit-f199c.firebaseapp.com",
@@ -50,6 +52,12 @@ export class MyApp {
       if (localStorage.getItem('language') != null)
         translate.use(localStorage.getItem('language'));
     });
+
+    events.unsubscribe("newNotification");
+        events.subscribe("newNotification", () => {
+            this.newNotification = true;
+        });
+        
   }
 }
 

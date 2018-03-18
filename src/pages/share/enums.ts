@@ -4,7 +4,7 @@ export enum status {
     update = 2,
 
 }
-
+//check status enum
 export enum checkStatus {
 
     notPaid = 0,
