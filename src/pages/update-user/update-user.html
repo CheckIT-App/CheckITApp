@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{"UPDATE_USER.HEADER"|translate}} - {{corporate_name}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="detailsForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label>{{'REGISTER.FIRST_NAME'|translate}}</ion-label>
+                <ion-input dir="{{direct}}" type="text" formControlName="firstname" [(ngModel)]="firstname"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!firstname_valid">{{"REGISTER.NAME_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{'REGISTER.LAST_NAME'|translate}}</ion-label>
+                <ion-input dir="{{direct}}" type="text" formControlName="lastname" [(ngModel)]="lastname"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!lastname_valid">{{"REGISTER.NAME_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{"REGISTER.USERNAME"|translate}}</ion-label>
+                <ion-input dir="{{direct}}" formControlName="username" type="text" [(ngModel)]="username"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!username_valid">{{"REGISTER.USERNAME_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{"REGISTER.EMAIL"|translate}}</ion-label>
+                <ion-input dir="{{direct}}" formControlName="email" type="email" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!email_valid">{{"REGISTER.EMAIL_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{"REGISTER.MOBILE"|translate}}</ion-label>
+                <ion-input dir="{{direct}}" formControlName="number" type="tel" [(ngModel)]="number"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!mobile_valid">{{"REGISTER.MOBILE_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{"REGISTER.ADDRESS"|translate}}</ion-label>
+                <ion-input dir="{{direct}}" formControlName="address" [(ngModel)]="address"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="!address_valid">{{"REGISTER.ADDRESS_VALID"|translate}}</div> -->
+
+            <ion-item>
+                <ion-label>{{"REGISTER.TELEPHONE"|translate}}</ion-label>
+                <ion-input dir="{{direct}}" formControlName="telephone" [(ngModel)]="telephone"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{"UPDATE_USER.LANGUAGE"|translate}}</ion-label>
+                <ion-select dir="{{direct}}" formControlName="lang" [(ngModel)]="lang" (ionChange)="changeLang()">
+                    <ion-option dir="{{direct}}" value="he">עברית</ion-option>
+                    <ion-option dir="{{direct}}" value="en">English</ion-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-list>
+    </form>
+
+
+    <!-- <header>{{ 'START.SELECT_HEADER_LANGUAGE' | translate }}</header>
+    <ion-list radio-group color="secondColor" [(ngModel)]="lang" (ionChange)="changeLang()">
+        <ion-item>
+            <ion-label>עברית</ion-label>
+            <ion-radio checked="true" color="secondColor" value="he"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>English</ion-label>
+            <ion-radio value="en" color="secondColor"></ion-radio>
+        </ion-item> -->
+    <!-- </ion-list> -->
+
+    <div>
+        <button ion-button color="primary" (click)="update()" block>{{"UPDATE_USER.BUTTON_TEXT"|translate}}</button>
+    </div>
+</ion-content>
