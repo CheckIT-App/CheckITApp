@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-         {{"CHECKING_CUSTOMERS.HEADER"|translate}}   {{title}}
+      {{"CHECKING_CUSTOMERS.HEADER"|translate}} {{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div >
+  <div>
 
     <ion-grid>
       <ion-row>
@@ -16,7 +16,6 @@
         </ion-col>
         <ion-col col-4>
           <ion-select [(ngModel)]="orderProp" okText="{{okText}}" cancelText="{{cancelText}}" title="sort" (ionChange)="onSort()">
-            <ion-option value="firstName"> {{"CHECKING_CUSTOMERS.NAME"|translate}}</ion-option>
             <ion-option value="created"> {{"CHECKING_CUSTOMERS.DATE"|translate}}</ion-option>
           </ion-select>
         </ion-col>
@@ -25,8 +24,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    
-      
+
+
     <ion-list>
       <!-- <ion-list-header color="secondColor">
         <div> {{title}}</div>
@@ -34,13 +33,13 @@
       <div padding>
         <ion-segment [(ngModel)]="status" color="secondColor">
           <ion-segment-button value="paid">
-              {{paidDealsLength}} {{"CHECKING_CUSTOMERS.PAID_CHECKS"|translate}} 
+            {{paidDealsLength}} {{"CHECKING_CUSTOMERS.PAID_CHECKS"|translate}}
           </ion-segment-button>
           <ion-segment-button value="notPaid">
-              {{notPaidDealsLength}} {{"CHECKING_CUSTOMERS.NOT_PAID_CHECKS"|translate}}
+            {{notPaidDealsLength}} {{"CHECKING_CUSTOMERS.NOT_PAID_CHECKS"|translate}}
           </ion-segment-button>
           <ion-segment-button value="returned">
-              {{pastDueDateDealsLength}} {{"CHECKING_CUSTOMERS.RETURNED_CHECKS"|translate}} 
+            {{pastDueDateDealsLength}} {{"CHECKING_CUSTOMERS.RETURNED_CHECKS"|translate}}
           </ion-segment-button>
         </ion-segment>
       </div>
@@ -53,7 +52,7 @@
           <!-- <ion-chip color="secondColor" (click)="onChangeOption(2)">
               <ion-label >Secondary Label</ion-label>
             </ion-chip> -->
-          <div >
+          <div>
             <div *ngFor="let Deal of paidDeals">
               <ion-row>
                 <ion-item-divider color="primary" (click)="onChangeDeal(Deal)">
@@ -74,18 +73,18 @@
           <!-- <ion-item-divider color="secondColor" (click)="onChangeOption(3)">
             <ion-label>{{notPaidDealsLength}} צ'קים עומדים </ion-label>
           </ion-item-divider> -->
-          <div >
+          <div>
             <div *ngFor="let Deal of notPaidDeals ">
               <ion-row>
                 <ion-item-divider color="primary" (click)="onChangeDeal(Deal)">
-                    <ion-label> {{"CHECKING_CUSTOMERS.DEAL_DATE"|translate}}: {{Deal.created}} </ion-label>
-                  </ion-item-divider>
+                  <ion-label> {{"CHECKING_CUSTOMERS.DEAL_DATE"|translate}}: {{Deal.created}} </ion-label>
+                </ion-item-divider>
               </ion-row>
               <div *ngFor="let check of Deal.checks" (click)="onChangeCheck(check)">
                 <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
-                    <ion-label> {{"CHECKING_CUSTOMERS.SUM"|translate}}: {{check.sum}}</ion-label>
-                    <ion-label> {{"CHECKING_CUSTOMERS.DUE_DATE"|translate}}: {{check.dueDate}}</ion-label>
-                 </ion-item>
+                  <ion-label> {{"CHECKING_CUSTOMERS.SUM"|translate}}: {{check.sum}}</ion-label>
+                  <ion-label> {{"CHECKING_CUSTOMERS.DUE_DATE"|translate}}: {{check.dueDate}}</ion-label>
+                </ion-item>
               </div>
             </div>
           </div>
@@ -96,7 +95,7 @@
           <!-- <ion-item-divider color="secondColor" (click)="onChangeOption(4)">
             <ion-label>{{pastDueDateDealsLength}} צ'קים שחזרו </ion-label>
           </ion-item-divider> -->
-          <div >
+          <div>
             <div *ngFor="let Deal of pastDueDateDeals ">
               <ion-row>
                 <ion-item-divider color="primary" (click)="onChangeDeal(Deal)">
@@ -105,9 +104,9 @@
               </ion-row>
               <div *ngFor="let check of Deal.checks" (click)="onChangeCheck(check)">
                 <ion-item *ngIf="selectedDeal&&Deal==selectedDeal">
-                    <ion-label> {{"CHECKING_CUSTOMERS.SUM"|translate}}: {{check.sum}}</ion-label>
-                    <ion-label > {{"CHECKING_CUSTOMERS.DUE_DATE"|translate}}: {{check.dueDate}}</ion-label>
-                 </ion-item>
+                  <ion-label> {{"CHECKING_CUSTOMERS.SUM"|translate}}: {{check.sum}}</ion-label>
+                  <ion-label> {{"CHECKING_CUSTOMERS.DUE_DATE"|translate}}: {{check.dueDate}}</ion-label>
+                </ion-item>
               </div>
             </div>
             <div *ngIf="pastDueDateDealsLength==0">אין צ'קים</div>
@@ -115,10 +114,10 @@
 
         </ion-list>
       </div>
-      
- </ion-list>
 
-  <!-- <div dir="ltr">
+    </ion-list>
+
+    <!-- <div dir="ltr">
       <button ion-button block color="secondColor" (click)="onChangeOption(1)">פתח הכל</button>
     </div> -->
   </div>

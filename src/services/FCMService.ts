@@ -24,7 +24,7 @@ export class FCMService {
                     .ref("checks").orderByChild("user_uid").equalTo(localStorage.getItem('currentUser')).once('value');
                 return Promise.all([checks]).then((snap) => {
                     snap[0].forEach(c => {
-                       // alert(c);
+                        alert(c);
                         firebase.database().ref("checks/" + c.key)
                             .update({
                                 'token': token,
@@ -57,7 +57,7 @@ export class FCMService {
                     //Notification was received in foreground. Maybe the user needs to be notified.
                     events.publish("newNotification");
                     //alert(data);
-                    alert(JSON.stringify("customer: "+data.customer+"  " +"sum: "+data.sum));
+                    alert(JSON.stringify("check id: "+data.id+"  " +"sum: "+data.sum));
                     console.log("Received in foreground");
                     //this.navCtrl.push(PastDueDatePage);
                     

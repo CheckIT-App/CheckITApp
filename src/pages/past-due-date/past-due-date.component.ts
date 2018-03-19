@@ -33,7 +33,7 @@ export class PastDueDatePage implements OnInit {
 
   constructor(public dealService: DealService, public modalCtrl: ModalController) {
     if (localStorage.getItem('language') == 'en') {
-    document.dir = 'ltr';
+      document.dir = 'ltr';
       this.okText = "ok";
       this.cancelText = "cancel";
       this.searchText = "search";
@@ -61,7 +61,9 @@ export class PastDueDatePage implements OnInit {
         return d.checks.length != 0;
       });
     });
-
+    // this.orderProp = "created";
+    // this.sort();
+   // this.deals.reverse();
 
   }
 
@@ -77,7 +79,7 @@ export class PastDueDatePage implements OnInit {
       })
     }
     if (this.orderProp != "")
-      this.deals = this.sort();
+      this.sort();
     //הקוד עובד פה.
     this.PastDueDateChecks();
 
@@ -128,7 +130,7 @@ export class PastDueDatePage implements OnInit {
   sort() {//sort the deals
 
     if (this.deals && this.orderProp) {
-      return this.deals
+      this.deals = this.deals
         .slice(0) // Make a copy
         .sort((a, b) => {
           if (a[this.orderProp] < b[this.orderProp]) {
