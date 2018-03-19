@@ -77,7 +77,7 @@ export class PersonalFilePage implements OnInit {
       });
     }
     if (this.orderProp != "")
-      this.deals = this.sort();
+       this.sort();
 
   }
 
@@ -119,12 +119,12 @@ export class PersonalFilePage implements OnInit {
   sort() {//sort the deals
 
     if (this.deals && this.orderProp) {
-      return this.deals
+      this.deals= this.deals
         .slice(0) // Make a copy
         .sort((a, b) => {
-          if (a[this.orderProp] > b[this.orderProp]) {
+          if (a[this.orderProp] < b[this.orderProp]) {
             return -1;
-          } else if ([b[this.orderProp] > a[this.orderProp]]) {
+          } else if ([b[this.orderProp] < a[this.orderProp]]) {
             return 1;
           } else {
             return 0;
