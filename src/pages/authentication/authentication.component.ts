@@ -151,6 +151,7 @@ export class AuthenticationPage {
               {
                 text: this.login_text,
                 handler: () => {
+                  this.navCtrl.pop();
                   this.navCtrl.push(LoginPage);
                 }
               },
@@ -198,7 +199,8 @@ export class AuthenticationPage {
                   this.emailComposer.open(email, function () {
                     this.sent = false;
                   }).then(r => {
-                    this.navCtrl.push(LoginPage);
+                    //this.navCtrl.pop();
+                    this.navCtrl.setRoot(LoginPage);
                   })
                   // this.modalCtrl.create(ForgotPasswordModal, { sender: "authentication", corporate_name: this.name_corporation }).present();
                   console.log("send mail");

@@ -82,8 +82,6 @@ export class PersonalFilePage implements OnInit {
 
   ngOnInit(): void {
     this.getDeals();
-<<<<<<< HEAD
-=======
 
     // getMetadata().then(img=>{
 
@@ -100,7 +98,6 @@ export class PersonalFilePage implements OnInit {
     //   }
     // }
 
->>>>>>> 435ffaeba6a88364159b10fc8a25b70c31fe1440
   }
 
   presentModal() {

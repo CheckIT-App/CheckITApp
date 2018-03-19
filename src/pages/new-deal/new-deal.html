@@ -12,12 +12,12 @@
     <ion-list>
 
       <ion-item>
-
-        <ion-label floating>{{"NEW_DEAL.ID"|translate}}</ion-label>
-        <ion-icon name="search" color="mainColor" (click)="updatePassword()" left></ion-icon>
+        <ion-label floating>{{"NEW_DEAL.ID"|translate}}</ion-label>     
         <ion-input type="number" formControlName="ID" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
-
+      <ion-icon *ngIf="existsCustomer" name="search" color="mainColor" (click)="checkCustomer()" style="zoom:0.6;margin-left:20px;" right></ion-icon>
+      
+      
       <!--<ion-item *ngIf="!this.addCheckForm.controls.ID.valid">
     <p>
       Please enter a valid ID number
@@ -28,7 +28,7 @@
         <ion-label floating>{{"NEW_DEAL.PASSPORT"|translate}}</ion-label>
         <ion-input type="number" formControlName="passport" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
-      <img [src]="captureDataUrl" *ngIf="captureDataUrl" />
+      
       <ion-item>
         <ion-label floating>{{"NEW_DEAL.CHECK_NUMBER"|translate}}</ion-label>
         <ion-input type="number" formControlName="checkNumber"></ion-input>
@@ -41,7 +41,7 @@
 
       <ion-item>
         <ion-label floating>{{"NEW_DEAL.BANK"|translate}}</ion-label>
-        <ion-input type="text" formControlName="bank"></ion-input>
+        <ion-input type="number" formControlName="bank"></ion-input>
       </ion-item>
 
       <ion-item>

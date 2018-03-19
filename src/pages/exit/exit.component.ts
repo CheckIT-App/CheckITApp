@@ -27,7 +27,9 @@ export class Exit {
 
   Exit() {
     localStorage.removeItem('currentUser');
-    this.navCtrl.push(LoginPage);
+   
+    //this.navCtrl.push(LoginPage);
+this.navCtrl.setRoot(LoginPage)
   }
 
   updateDetails() {

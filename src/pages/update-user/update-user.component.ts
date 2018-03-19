@@ -62,7 +62,7 @@ export class UpdateUserPage {
             document.dir = 'ltr';
             this.direct = "rtl";
             this.message = 'The details you have changed were updated successfuly.';
-            this.message = 'Something was wrong.';
+            this.message_error = 'Something was wrong.';
         }
 
 

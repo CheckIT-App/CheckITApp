@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 import { Details } from '../details-modal/details-modal';
@@ -24,6 +24,7 @@ export class CheckingCustomersPage {
   checks: Check[];
   deals: Deal[] = [];
   direct = "ltr";
+  id;
   notPaidDeals: Deal[] = [];
   notPaidDealsLength: number = 0;
   paidDeals: Deal[] = [];
@@ -35,8 +36,9 @@ export class CheckingCustomersPage {
   selectedCheckStatus: checkStatus;
   selectedDeal: Deal;
   selectedOption: openOption;
-  status="paid";
+  status = "paid";
   title = "";
+  type;
   okText = "אישור";
   cancelText = "בטל";
   searchText = "חפש";
@@ -44,7 +46,7 @@ export class CheckingCustomersPage {
   //#endregion 
 
   //#region constructor
-  constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public dealService: DealService, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     if (localStorage.getItem('language') == 'en') {
       document.dir = 'ltr';
       this.okText = "ok";
@@ -52,14 +54,17 @@ export class CheckingCustomersPage {
       this.searchText = "search";
       this.direct = "rtl";
     }
+    this.id = this.navParams.get('id');
+    this.type = this.navParams.get('type') == "ID" ? 0 : 1;;
+
   }
   //#endregion
 
   //#region lifecycle functions
-  ngOnInit(): void {
+ 
 
+  ngOnInit(): void {
     this.presentModalCustomerToCheck('הכנס מספר ת.ז. או דרכון', false);
-    //this.getDeals();
 
   }
   //#endregion
@@ -170,7 +175,7 @@ export class CheckingCustomersPage {
 
   orderDeals() {//order the deals to thier list
     this.paidDeals = this.deals.map(x => Object.assign({}, x));
-    
+
     this.paidDeals.map(d => {
       d.checks = d.checks.filter(c => {
         return c.status == checkStatus.paid;
@@ -183,7 +188,7 @@ export class CheckingCustomersPage {
     this.paidDeals.forEach(d => {
       this.paidDealsLength += d.checks.length;
     });
-    
+
     this.notPaidDeals = this.deals.map(x => Object.assign({}, x));
     this.notPaidDeals.map(d => {
       d.checks = d.checks.filter(c => {
@@ -235,30 +240,44 @@ export class CheckingCustomersPage {
   }
 
   presentModalCustomerToCheck(message, alert) {//present modal of a customer details for check his history 
-
-    let modal = this.modalCtrl.create(CustomerToCheck, { messaging: message, alerting: alert });
-    modal.present();
-    modal.onDidDismiss(data => {
-      if (data) {
-        this.dealService.getDealsForCustomer(parseInt(data.id), data.type).then(res => {
-          this.deals = res;
-          if (res.length != 0) {
-            this.title = this.deals[0].firstName;
-            this.orderDeals();
-          }
-          else {
-            this.presentAlert('אין נתונים על לקוח זה');
-          }
+    if (this.id && (this.type == 0 || this.type == 1)){
+      this.dealService.getDealsForCustomer(parseInt(this.id), this.type).then(res => {
+        this.deals = res;
+        if (res.length != 0) {
+          this.title = this.deals[0].firstName;
+          this.orderDeals();
         }
-        );
+        else {
+          this.presentAlert('אין נתונים על לקוח זה');
+        }
       }
-      else {
-        this.navCtrl.pop();
-      }
+      );
     }
+    else {
+      let modal = this.modalCtrl.create(CustomerToCheck, { messaging: message, alerting: alert });
+      modal.present();
+      modal.onDidDismiss(data => {
+        if (data) {
+          this.dealService.getDealsForCustomer(parseInt(data.id), data.type).then(res => {
+            this.deals = res;
+            if (res.length != 0) {
+              this.title = this.deals[0].firstName;
+              this.orderDeals();
+            }
+            else {
+              this.presentAlert('אין נתונים על לקוח זה');
+            }
+          }
+          );
+        }
+        else {
+          this.navCtrl.pop();
+        }
+      }
 
-    )
+      )
 
+    }
 
   }
 
@@ -275,6 +294,9 @@ export class CheckingCustomersPage {
         }
       });
   }
+
+
+
   //#endregion
 
 
