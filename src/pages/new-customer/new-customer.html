@@ -13,7 +13,7 @@
             <ion-item>
                 <ion-label *ngIf="!isPassport" floating>{{"ADD_CUSTOMER.PASSPORT"|translate}}</ion-label>
                 <ion-label *ngIf="isPassport" floating>{{"ADD_CUSTOMER.IDENTITY"|translate}}</ion-label>
-                <ion-input type="text" formControlName="identity" (change)="isExists()"></ion-input>
+                <ion-input type="number" formControlName="identity" (change)="isExists()"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -27,6 +27,6 @@
             </ion-item>
 
         </ion-list>
-        <button ion-button block type="submit">{{"ADD_CUSTOMER.BUTTON_TEXT"|translate}</button>
+        <button ion-button block type="submit">{{"ADD_CUSTOMER.BUTTON_TEXT"|translate}}</button>
     </form>
 </ion-content>

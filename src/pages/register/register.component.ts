@@ -84,7 +84,7 @@ console.log(this.navParams.get("name_corporation")+this.navParams.get("corporati
       this.mobile_valid = this.registerForm.controls.number.valid;
       this.address_valid = this.registerForm.controls.address.valid;
       console.log(this.username_valid);
-      console.log("Nice try!");
+      console.log("Nice try!!!");
 
     }
     else {

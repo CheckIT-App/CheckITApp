@@ -22,9 +22,10 @@
 
 </ion-list>
 <div>
-    <button ion-button color="secondColor" block (click)="login()">{{ 'LOGIN.BUTTON_LOGIN' | translate }}</button>
-    <button ion-button color="mainColor" block (click)="navigateNewUser()">{{ 'LOGIN.BUTTON_REGISTER' | translate }}</button>
+    <button ion-button color="mainColor" block (click)="login()">{{ 'LOGIN.BUTTON_LOGIN' | translate }}</button>
+    <button ion-button color="secondColor" block (click)="navigateNewUser()">{{ 'LOGIN.BUTTON_REGISTER' | translate }}</button>
 </div>
+<!-- <ion-icon name="md-lock" color="mainColor" small></ion-icon> -->
 <button ion-button clear (click)="forgotPassword()">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</button>
-
+<!-- <button (click)="try()">try mail</button> -->
 </ion-content>

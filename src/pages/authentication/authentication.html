@@ -21,11 +21,11 @@
 
     <ion-item *ngIf="!isPrivate">
       <ion-label floating>{{'AUTHENTICATION.CORPORATION_NUMBER'|translate}}</ion-label>
-      <ion-input type="text" [(ngModel)]="numCor"></ion-input>
+      <ion-input type="number" [(ngModel)]="numCor"></ion-input>
     </ion-item>
   </ion-list>
 
   <div>
-    <button ion-button color="secondColor" block (click)="next()">{{'AUTHENTICATION.BUTTON_TEXT'|translate}}</button>
+    <button ion-button block (click)="next()">{{'AUTHENTICATION.BUTTON_TEXT'|translate}}</button>
   </div>
 </ion-content>

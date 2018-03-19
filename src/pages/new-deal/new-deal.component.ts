@@ -20,9 +20,13 @@ import { NewDealService } from '../../services/new-deal.service';
 
 //TODO change the strings to constants
 export class NewDealPage {
+
   public addDealForm: FormGroup;
   public customerUID;
+  captureDataUrl: string;
+  customer_name = "gtjyjyf";
   currentDealKey: string;
+  imagename: number =0;
   isNewDeal: boolean;
   maxDay: Date;//to ask about the range of the due-date
   message: string = "הצ'ק הוסף בהצלחה. אם ברצונך להוסיף צ'ק נוסף, מלא את השדות ולחץ ,'הוסף'";
@@ -72,11 +76,12 @@ export class NewDealPage {
       if (this.addDealForm.value.ID != "" && this.addDealForm.value.passport != "" && this.addDealForm.value.ID != null && this.addDealForm.value.passport != null) {//
         if (IsID.checkIDAsNumber(this.addDealForm.value.ID) == null) {
           this.newDealService.isCustomerExists(parseInt(this.addDealForm.value.ID), "ID").then(key => {
+            console.log(key);
             if (key != undefined) {//if the ID exists
               if (IsID.checkPassportAsNumber(this.addDealForm.value.passport) == null) {
                 this.newDealService.isCustomerExists(parseInt(this.addDealForm.value.passport), "passport").then(rkey => {
                   this.newDealService.updateCustomerWithID(key, this.addDealForm.value.passport, "passport").then(succeed => {//update the profile with the passport
-                    if (succeed == true && rkey != undefined) {//if the passport exists - delete from the DB
+                    if (succeed == true && rkey != undefined && rkey != key) {//if the passport exists - delete from the DB
                       this.newDealService.removeCustomer(rkey);
                     }
                   });
@@ -84,8 +89,11 @@ export class NewDealPage {
               }
             }
             else {//if ID doesn't exist
+              console.log(this.addDealForm.value.passport + "***");
               this.newDealService.isCustomerExists(this.addDealForm.value.passport, "passport").then(pkey => {
-                this.newDealService.updateCustomerWithID(pkey, this.addDealForm.value.ID, "ID");//update the profile of passport with ID
+                console.log(pkey);
+                if (pkey != undefined)
+                  this.newDealService.updateCustomerWithID(pkey, this.addDealForm.value.ID, "ID").then(h => { console.log(h) });//update the profile of passport with ID
               })
             }
           });
@@ -107,12 +115,46 @@ export class NewDealPage {
       });
       modal.present();
     }
-    else
+    else {
       this.customerUID = exists;
+      // this.newDealService.getCustomerName(this.customerUID).then(name => {
+      // this.customer_name =name;
+      //   console.log(name);
+      //   console.log(this.customer_name);
+      // });
+    }
+  }
+
+  savePic() {
+    //this.newDealService.savepic();
   }
 
   takePic(): void {
     //TODO enable taking 2 pictures of the check
+    this.cameraPlugin.getPicture({
+      quality: 95,
+      destinationType: this.cameraPlugin.DestinationType.DATA_URL,
+      sourceType: this.cameraPlugin.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: this.cameraPlugin.EncodingType.JPEG,
+      //targetWidth: 500,
+      //targetHeight: 500,
+      saveToPhotoAlbum: true
+    }).then(profilePicture => {
+      this.captureDataUrl = 'data:image/jpeg;base64,' + profilePicture;
+      this.imagename = Math.floor(Date.now() / 1000);
+      this.newDealService.savepic(this.captureDataUrl, this.imagename).then(r => {
+        // this.alertCtrl.create({
+        //   title: 'Uploaded!        ' + r,
+        //   subTitle: 'Picture is uploaded to Firebase',
+        //   buttons: ['OK']
+        // }).present();
+
+      });
+    }, error => {
+      // Log an error to the console if something goes wrong.
+      console.log("ERROR -> " + JSON.stringify(error));
+    });
     console.log("Take a picture");
   }
 
@@ -123,7 +165,8 @@ export class NewDealPage {
       parseInt(this.addDealForm.value.sum),
       this.addDealForm.value.bank,
       parseInt(this.addDealForm.value.branch),
-      this.addDealForm.controls.dueDate.value).then(res => {
+      this.addDealForm.controls.dueDate.value,
+      this.imagename).then(res => {
         if (res == true) {
           let toast = this.toastCtrl.create({
             message: this.message,
@@ -135,6 +178,7 @@ export class NewDealPage {
           this.addDealForm.controls.bank.reset();
           this.addDealForm.controls.branch.reset();
           this.addDealForm.controls.dueDate.reset();
+          this.imagename =0;
         }
       });
 
@@ -146,29 +190,40 @@ export class NewDealPage {
       && this.addDealForm.controls.sum.valid
       && this.addDealForm.controls.bank.valid
       && this.addDealForm.controls.branch.valid
-      && this.addDealForm.controls.dueDate.valid)) {
+      && this.addDealForm.controls.dueDate.valid
+      && this.imagename != 0
+    /*&&this.customer_name*/)) {
       //TODO להוסיף הערות/הדגשות לשדות הריקים-הלא ולידיים
       console.log("Nice try!");
-
+      this.alertCtrl.create({
+        title: this.imagename.toString(),
+        subTitle: 'Picture is uploaded to Firebase',
+        //buttons: ['OK']
+      }).present();
     } else {
       if (this.isNewDeal) {
         this.addDealForm.value.ID = this.addDealForm.value.ID == "" ? null : parseInt(this.addDealForm.value.ID);
         this.addDealForm.value.passport = this.addDealForm.value.passport == "" ? null : parseInt(this.addDealForm.value.passport);
+        this.newDealService.getCustomerName(this.customerUID).then(name => {
+          this.newDealService.saveDeal(this.customerUID,
+            this.addDealForm.value.ID,
+            this.addDealForm.value.passport,
+            //this.customer_name,
+            parseInt(this.addDealForm.value.checkNumber),
+            parseInt(this.addDealForm.value.sum),
+            this.addDealForm.value.bank,
+            parseInt(this.addDealForm.value.branch),
+            this.addDealForm.controls.dueDate.value,
+            this.imagename).then((res) => {
+              console.log(res);
+              if (res != "Error") {
+                this.currentDealKey = res;
+                this.isNewDeal = false;
+                this.addCheck();
+              }
+            }).catch(e => { console.log(e) });
 
-        this.newDealService.saveDeal(this.customerUID,
-          this.addDealForm.value.ID,
-          this.addDealForm.value.passport,
-          parseInt(this.addDealForm.value.checkNumber),
-          parseInt(this.addDealForm.value.sum),
-          this.addDealForm.value.bank,
-          parseInt(this.addDealForm.value.branch),
-          this.addDealForm.controls.dueDate.value).then((res) => {
-            if (res != "Error") {
-              this.currentDealKey = res;
-              this.isNewDeal = false;
-              this.addCheck();
-            }
-          });
+        })
       }
       else {
         this.addCheck();

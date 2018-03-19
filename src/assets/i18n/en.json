@@ -25,7 +25,7 @@
     },
     "AUTHENTICATION": {
         "HEADER": "Authentication",
-        "CORPORATION_NAME":"name of your corporation",
+        "CORPORATION_NAME":"Name of your corporation",
         "IDENTITY": "Identity",
         "CORPORATION_NUMBER": "Number of corporation",
         "BUTTON_TEXT": "Next"
@@ -34,9 +34,12 @@
         "BUTTON_TEXT": "Exit"
     },
     "FORGOT_PASSWORD": {
-        "HEADER": "Forgot password",
+        "HEADER_F": "Forgot password",
+        "HEADER_A": "Send mail to system manager",
         "INPUT_TEXT": "Enter your email address",
-        "BUTTON_TEXT": "OK"
+        "NAME_TEXT": "Enter your name",
+        "CORNAME_TEXT":"Enter your corporate name",
+        "BUTTON_TEXT": "Send"
     },
     "ADD_CUSTOMER": {
         "HEADER": "New customer",
@@ -55,7 +58,8 @@
         "BANK": "bank",
         "BRANCH": "branch",
         "DUE_DATE": "due date",
-        "BUTTON_TEXT": "ADD"
+        "BUTTON_TEXT": "ADD",
+        "BUTTON_FINISH":"Finish"
     },
     "PERSONAL_FILE": {
         "HEADER": "personal file",
@@ -149,5 +153,16 @@
         "EXPIRED_ON":"expired on",
         "CHECK_RETURNED":"check returned"
         
+    },
+    "NEW_PASSWORD":{
+        "HEADER":"update password",
+        "PASSWORD":"enter new password",
+        "PASSWORD_AUTH":"authenticate your password",
+        "BUTTON_TEXT":"Update"
+    },
+    "UPDATE_USER":{
+        "HEADER":"Update details",
+        "BUTTON_TEXT":"Update",
+        "LANGUAGE":"language"
     }
 }

@@ -1,7 +1,8 @@
+*-+ .34
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-     {{"NEW_DEAL.HEADER"|translate}}
+      {{"NEW_DEAL.HEADER"|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,7 +12,9 @@
     <ion-list>
 
       <ion-item>
+
         <ion-label floating>{{"NEW_DEAL.ID"|translate}}</ion-label>
+        <ion-icon name="search" color="mainColor" (click)="updatePassword()" left></ion-icon>
         <ion-input type="number" formControlName="ID" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
 
@@ -25,7 +28,7 @@
         <ion-label floating>{{"NEW_DEAL.PASSPORT"|translate}}</ion-label>
         <ion-input type="number" formControlName="passport" [disabled]="!isNewDeal" (change)="isExists()"></ion-input>
       </ion-item>
-
+      <img [src]="captureDataUrl" *ngIf="captureDataUrl" />
       <ion-item>
         <ion-label floating>{{"NEW_DEAL.CHECK_NUMBER"|translate}}</ion-label>
         <ion-input type="number" formControlName="checkNumber"></ion-input>
@@ -53,7 +56,7 @@
           formControlName="dueDate" [(ngModel)]="selectedDate"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-icon name="ios-camera" color="primary" (click)="takePic()"></ion-icon>
+        <ion-icon name="ios-camera" color="primary" ng-disabled="picTaken" (click)="takePic()"></ion-icon>
       </ion-item>
 
     </ion-list>

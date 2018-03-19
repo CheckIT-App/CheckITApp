@@ -82,42 +82,20 @@ export class PersonalFilePage implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.getDeals();
-
-    // getMetadata().then(img=>{
-
-
-    // });
-    // Create reference to the file whose metadata we want to retrieve
-
-    // Get metadata properties
-    // forestRef.getMetadata { metadata, error in
-    //   if let error = error {
-    //     // Uh-oh, an error occurred!
-    //   } else {
-    //     // Metadata now contains the metadata for 'images/forest.jpg'
-    //   }
-    // }
-
   }
 
   presentModal() {
-
     let modal = this.modalCtrl.create(Details, { selectedCheck: this.selectedCheck });
     modal.present();
-
   }
 
   save() {
-
     this.dealService.save(this.deals);
     this.selectedDeal = null;
-
   }
 
   sort() {//sort the deals
-
     if (this.deals && this.orderProp) {
       this.deals= this.deals
         .slice(0) // Make a copy
